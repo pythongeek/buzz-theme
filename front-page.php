@@ -128,4 +128,23 @@ get_template_part('template-parts/sections/section', 'viral');
     </div>
 </section>
 
+<!-- Newsletter -->
+<section class="bw-newsletter-front bw-reveal">
+    <div class="bw-newsletter-inner">
+        <div class="bw-newsletter-kicker">Daily Brief</div>
+        <h2 class="bw-newsletter-title-front">Stay on the <span>Wire</span></h2>
+        <p class="bw-newsletter-desc">One daily signal. Hip-hop, AI, crypto, streaming, virality — curated for the generation that moves fast.</p>
+        <div class="bw-newsletter-perks">
+            <span class="bw-newsletter-perk">Drop alerts before they drop</span>
+            <span class="bw-newsletter-perk">Industry move breakdowns</span>
+            <span class="bw-newsletter-perk">Cipher culture coverage</span>
+        </div>
+        <form class="bw-newsletter-form-row" action="#" method="post">
+            <input type="email" class="bw-newsletter-in" placeholder="your@email.com" required>
+            <button type="submit" class="bw-newsletter-bt">Join →</button>
+        </form>
+        <p class="bw-newsletter-note">50,000+ readers · No spam · Unsubscribe anytime</p>
+    </div>
+</section>
+
 <?php get_footer(); ?>

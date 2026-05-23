@@ -9,7 +9,7 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
-$ai_posts = buzz_get_posts_by_section('ai-lab', 4);
+$ai_posts = buzz_get_posts_by_section('ai', 4);
 ?>
 
 <!-- ═══ 5. AI LAB ═══ -->

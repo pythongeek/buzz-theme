@@ -9,7 +9,7 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
-$movies_posts = buzz_get_posts_by_section('movies-tv', 3);
+$movies_posts = buzz_get_posts_by_section('movies', 3);
 ?>
 
 <!-- ═══ 2. MOVIES & TV ═══ -->

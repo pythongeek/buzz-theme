@@ -1,0 +1,1785 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hip-Hop & Urban Culture — Buzzwire Daily</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:ital,wght@0,300;0,400;0,500;1,400&family=Barlow+Condensed:ital,wght@0,400;0,700;0,900;1,700;1,900&family=Permanent+Marker&family=Black+Han+Sans&display=swap" rel="stylesheet">
+<style>
+/* ═══════════════ RESET & BASE ═══════════════ */
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+:root{
+  --bg:#040305;
+  --bg2:#090010;
+  --bg3:#0A0108;
+  --card:#0D0012;
+  --card2:#160018;
+  --yellow:#FFE600;
+  --red:#CC0000;
+  --red2:#FF2D55;
+  --neon:#39FF14;
+  --cyan:#00E5FF;
+  --fire:#FF6B00;
+  --purple:#9B59B6;
+  --white:#FFFFFF;
+  --muted:rgba(255,255,255,0.38);
+  --dim:rgba(255,255,255,0.12);
+  --border:rgba(255,255,255,0.06);
+  --nav-w:56px;
+}
+body{
+  background:var(--bg);
+  color:var(--white);
+  font-family:'DM Mono',monospace;
+  overflow-x:hidden;
+  cursor:none;
+}
+/* GRAIN OVERLAY */
+body::before{
+  content:'';position:fixed;inset:0;pointer-events:none;z-index:9996;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)'/%3E%3C/svg%3E");
+  opacity:0.028;animation:grainmove 0.2s steps(1) infinite;
+}
+@keyframes grainmove{0%{transform:translate(0,0)}25%{transform:translate(-1px,1px)}50%{transform:translate(1px,-1px)}75%{transform:translate(-1px,-1px)}100%{transform:translate(1px,1px)}}
+::-webkit-scrollbar{width:2px}
+::-webkit-scrollbar-track{background:var(--bg)}
+::-webkit-scrollbar-thumb{background:var(--red)}
+a{text-decoration:none;color:inherit}
+button{font-family:'DM Mono',monospace;cursor:none}
+input,textarea{font-family:'DM Mono',monospace}
+img{display:block}
+
+/* ═══════════════ CURSOR ═══════════════ */
+#cur{
+  position:fixed;width:10px;height:10px;
+  background:var(--yellow);border-radius:50%;
+  pointer-events:none;z-index:9999;
+  transition:transform .08s,background .2s;
+  mix-blend-mode:difference;
+}
+#cur-r{
+  position:fixed;width:36px;height:36px;
+  border:1px solid rgba(255,230,0,.3);border-radius:50%;
+  pointer-events:none;z-index:9998;
+  transition:left .18s ease,top .18s ease,width .15s,height .15s,border-color .2s;
+}
+body.hovered #cur{transform:scale(3);background:var(--red)}
+body.hovered #cur-r{width:56px;height:56px;border-color:rgba(204,0,0,.5)}
+
+/* ═══════════════ LEFT VERTICAL NAV ═══════════════ */
+.v-nav{
+  position:fixed;left:0;top:0;bottom:0;width:var(--nav-w);z-index:300;
+  background:rgba(4,3,5,.98);border-right:1px solid rgba(255,255,255,.05);
+  display:flex;flex-direction:column;align-items:center;padding:20px 0 16px;
+}
+.vn-logo{
+  font-family:'Bebas Neue',cursive;font-size:10px;letter-spacing:.4em;
+  writing-mode:vertical-rl;transform:rotate(180deg);color:var(--white);
+  margin-bottom:28px;white-space:nowrap;
+}
+.vn-logo span{color:var(--yellow)}
+.vn-sep{width:18px;height:1px;background:var(--border);margin:6px 0}
+.vn-links{display:flex;flex-direction:column;gap:2px;width:100%;align-items:center;flex:1}
+.vn-link{
+  width:38px;height:38px;display:flex;align-items:center;justify-content:center;
+  font-size:15px;border-radius:4px;transition:background .15s;cursor:none;position:relative;
+}
+.vn-link:hover,.vn-link.on{background:rgba(255,230,0,.08)}
+.vn-link.on{border:1px solid rgba(255,230,0,.2)}
+.vn-tip{
+  position:absolute;left:46px;top:50%;transform:translateY(-50%);
+  background:#111;border:1px solid rgba(255,255,255,.08);
+  padding:4px 10px;font-size:8px;letter-spacing:.15em;
+  white-space:nowrap;opacity:0;pointer-events:none;transition:opacity .12s;
+  text-transform:uppercase;font-family:'DM Mono',monospace;
+}
+.vn-link:hover .vn-tip{opacity:1}
+.vn-back{
+  width:38px;height:38px;display:flex;align-items:center;justify-content:center;
+  font-size:11px;border:1px solid var(--border);color:var(--muted);cursor:none;
+  transition:all .2s;margin-top:4px;border-radius:4px;letter-spacing:.05em;
+}
+.vn-back:hover{border-color:var(--yellow);color:var(--yellow)}
+.vn-live{display:flex;flex-direction:column;align-items:center;gap:5px;margin-top:auto;padding-top:16px}
+.vn-dot{width:5px;height:5px;background:var(--red2);border-radius:50%;animation:livepulse 1.4s infinite}
+@keyframes livepulse{0%,100%{opacity:1;box-shadow:0 0 0 0 rgba(255,45,85,.4)}50%{opacity:.3;box-shadow:0 0 0 4px rgba(255,45,85,0)}}
+.vn-live-text{font-size:7px;letter-spacing:.2em;color:var(--red2);writing-mode:vertical-rl;transform:rotate(180deg)}
+
+/* ═══════════════ MAIN OFFSET ═══════════════ */
+.main{margin-left:var(--nav-w);position:relative}
+
+/* ═══════════════ PAGE HERO ═══════════════ */
+.page-hero{
+  position:relative;padding:56px 5vw 0;min-height:460px;overflow:hidden;
+  display:flex;flex-direction:column;justify-content:flex-end;
+  border-bottom:1px solid var(--border);
+  background:radial-gradient(ellipse at 70% 30%, rgba(155,89,182,.06) 0%, transparent 60%),
+             radial-gradient(ellipse at 20% 80%, rgba(204,0,0,.06) 0%, transparent 50%);
+}
+.ph-canvas{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+.ph-bg-text{
+  position:absolute;right:-2vw;top:50%;transform:translateY(-50%);
+  font-family:'Bebas Neue',cursive;font-size:clamp(160px,22vw,340px);
+  color:rgba(255,230,0,.025);line-height:1;pointer-events:none;
+  letter-spacing:-.02em;user-select:none;animation:bgpulse 6s ease infinite;
+}
+@keyframes bgpulse{0%,100%{opacity:.7}50%{opacity:1}}
+.ph-top-bar{display:flex;align-items:center;justify-content:space-between;margin-bottom:40px;position:relative;z-index:2}
+.ph-breadcrumb{display:flex;align-items:center;gap:8px;font-size:8px;letter-spacing:.25em;color:var(--red2);text-transform:uppercase}
+.ph-breadcrumb::before{content:'▶';font-size:7px}
+.ph-breadcrumb a{color:var(--muted);transition:color .15s}
+.ph-breadcrumb a:hover{color:var(--white)}
+.ph-breadcrumb span{color:var(--red2)}
+.ph-live{
+  display:flex;align-items:center;gap:8px;font-size:8px;letter-spacing:.18em;
+  color:var(--red2);text-transform:uppercase;border:1px solid rgba(255,45,85,.2);padding:5px 12px;
+}
+.ph-live-dot{width:5px;height:5px;background:var(--red2);border-radius:50%;animation:livepulse 1.4s infinite}
+/* CULTURE TAGS */
+.ph-culture-tags{
+  position:absolute;top:60px;right:5vw;display:flex;flex-direction:column;gap:6px;z-index:2;
+  animation:fadein 1s ease .3s both;
+}
+.ph-ctag{
+  font-size:7px;letter-spacing:.2em;text-transform:uppercase;
+  border:1px solid;padding:4px 10px;text-align:right;
+}
+.ph-ctag.mc{border-color:rgba(255,230,0,.25);color:var(--yellow)}
+.ph-ctag.dj{border-color:rgba(0,229,255,.2);color:var(--cyan)}
+.ph-ctag.bb{border-color:rgba(57,255,20,.2);color:var(--neon)}
+.ph-ctag.gr{border-color:rgba(255,107,0,.2);color:var(--fire)}
+.ph-ctag.kn{border-color:rgba(155,89,182,.2);color:var(--purple)}
+/* TITLES */
+.ph-headline-wrap{position:relative;z-index:2;padding-bottom:0}
+.ph-section-num{font-size:8px;letter-spacing:.3em;color:var(--red);text-transform:uppercase;margin-bottom:6px;display:flex;align-items:center;gap:10px}
+.ph-section-num::before{content:'';width:20px;height:1px;background:var(--red)}
+.ph-title{font-family:'Bebas Neue',cursive;font-size:clamp(80px,13vw,170px);line-height:.88;letter-spacing:.01em;color:var(--white);overflow:hidden}
+.ph-title .y{color:var(--yellow)}
+.ph-title .r{color:var(--red)}
+.ph-title-line{display:block;overflow:hidden}
+.ph-title-inner{display:block;animation:slideUp .8s cubic-bezier(.16,1,.3,1) both}
+.ph-title-inner:nth-child(1){animation-delay:.1s}
+.ph-title-inner:nth-child(2){animation-delay:.18s}
+.ph-title-inner:nth-child(3){animation-delay:.26s}
+@keyframes slideUp{from{transform:translateY(110%)}to{transform:translateY(0)}}
+.ph-tagline{font-size:11px;letter-spacing:.12em;color:var(--muted);margin-top:12px;animation:fadein .8s ease .5s both}
+@keyframes fadein{from{opacity:0}to{opacity:1}}
+/* HERO STATS STRIP */
+.ph-stats{display:flex;gap:0;border-top:1px solid var(--border);position:relative;z-index:2;margin-top:36px}
+.ph-stat{padding:14px 24px;border-right:1px solid var(--border);display:flex;gap:12px;align-items:center;animation:fadein 1s ease .7s both}
+.ph-stat:last-child{border-right:none}
+.ph-stat-n{font-family:'Bebas Neue',cursive;font-size:28px;color:var(--yellow);line-height:1}
+.ph-stat-l{font-size:8px;color:var(--muted);letter-spacing:.1em;line-height:1.5}
+
+/* ═══════════════ BREAKING TICKER ═══════════════ */
+.ticker{background:var(--red);padding:9px 0;overflow:hidden;position:sticky;top:0;z-index:200}
+.ticker-label{
+  position:absolute;left:0;top:0;bottom:0;background:#900;z-index:2;
+  display:flex;align-items:center;padding:0 16px;
+  font-size:9px;letter-spacing:.2em;font-weight:500;white-space:nowrap;text-transform:uppercase;
+  border-right:2px solid rgba(255,255,255,.2);
+}
+.ticker-wrap{display:flex;white-space:nowrap;animation:tick 38s linear infinite;padding-left:120px}
+.tick-i{font-size:10px;letter-spacing:.14em;text-transform:uppercase;padding:0 24px;color:#000;flex-shrink:0}
+.tick-i::after{content:'  ✦  ';opacity:.4}
+@keyframes tick{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* ═══════════════ 5 ELEMENTS BANNER ═══════════════ */
+.five-elements{
+  background:var(--bg2);border-bottom:1px solid var(--border);
+  padding:0;overflow:hidden;position:relative;
+}
+.five-elements::before{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(90deg, rgba(4,3,5,.9) 0%, transparent 8%, transparent 92%, rgba(4,3,5,.9) 100%);
+  pointer-events:none;z-index:2;
+}
+.five-el-track{display:flex;animation:eltick 30s linear infinite;white-space:nowrap}
+.el-item{
+  display:inline-flex;align-items:center;gap:14px;
+  padding:18px 40px;border-right:1px solid var(--border);
+  flex-shrink:0;
+}
+.el-icon{font-size:22px;flex-shrink:0}
+.el-info{display:flex;flex-direction:column;gap:2px}
+.el-num{font-size:7px;letter-spacing:.25em;color:var(--muted);text-transform:uppercase}
+.el-name{font-family:'Bebas Neue',cursive;font-size:20px;letter-spacing:.06em;line-height:1}
+.el-item:nth-child(5n+1) .el-name{color:var(--yellow)}
+.el-item:nth-child(5n+2) .el-name{color:var(--cyan)}
+.el-item:nth-child(5n+3) .el-name{color:var(--neon)}
+.el-item:nth-child(5n+4) .el-name{color:var(--fire)}
+.el-item:nth-child(5n+0) .el-name{color:var(--purple)}
+@keyframes eltick{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.five-el-quote{
+  position:absolute;right:5vw;top:50%;transform:translateY(-50%);
+  z-index:3;font-family:'Permanent Marker',cursive;
+  font-size:11px;color:rgba(255,230,0,.45);pointer-events:none;text-align:right;
+  line-height:1.4;
+}
+
+/* ═══════════════ SECTION LAYOUT ═══════════════ */
+.section{padding:56px 5vw;position:relative}
+.sec-label{
+  font-size:8px;letter-spacing:.28em;color:var(--red);text-transform:uppercase;
+  display:flex;align-items:center;gap:10px;margin-bottom:10px;position:relative;
+}
+.sec-label::before{content:'';width:16px;height:1px;background:var(--red)}
+/* SPRAY DRIP EFFECT ON LABEL */
+.spray-label::after{
+  content:'';position:absolute;left:0;top:100%;
+  width:2px;background:var(--red);border-radius:0 0 2px 2px;
+  animation:drip 3s ease-in-out infinite;transform-origin:top;
+}
+@keyframes drip{0%,100%{height:0;opacity:0}30%{height:0;opacity:1}70%{height:18px;opacity:1}90%{height:22px;opacity:0}}
+.sec-h{font-family:'Bebas Neue',cursive;font-size:clamp(44px,6vw,80px);color:var(--white);line-height:.9;margin-bottom:36px}
+.sec-h .y{color:var(--yellow)}
+.sec-h .r{color:var(--red2)}
+.sec-h .n{color:var(--neon)}
+.sec-h .c{color:var(--cyan)}
+.sec-h .f{color:var(--fire)}
+.sec-h .p{color:var(--purple)}
+.sec-h .dim{-webkit-text-stroke:1px rgba(255,255,255,.15);color:transparent}
+
+/* ═══════════════ MAIN NEWS GRID ═══════════════ */
+.main-grid{display:grid;grid-template-columns:1fr .75fr .75fr;grid-template-rows:auto auto;gap:3px}
+.card-hero{
+  grid-row:1/3;background:var(--card);padding:32px 28px;
+  position:relative;overflow:hidden;cursor:none;
+  border-left:4px solid var(--red);transition:border-color .25s;
+}
+.card-hero:hover{border-color:var(--yellow)}
+.card-hero::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse at 80% 0%,rgba(255,230,0,.05) 0%,transparent 60%);
+  pointer-events:none;
+}
+.card-bg-num{
+  position:absolute;right:-8px;bottom:-20px;font-family:'Bebas Neue',cursive;
+  font-size:180px;line-height:1;color:rgba(255,230,0,.045);
+  pointer-events:none;user-select:none;transition:color .3s;
+}
+.card-hero:hover .card-bg-num{color:rgba(255,230,0,.07)}
+.card-std{
+  background:var(--card);padding:24px 22px;position:relative;overflow:hidden;
+  cursor:none;transition:background .2s;
+}
+.card-std::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:transparent;transition:background .25s}
+.card-std:hover{background:var(--card2)}
+.card-std:hover::before{background:var(--yellow)}
+.card-bg-num-sm{position:absolute;right:8px;bottom:-8px;font-family:'Bebas Neue',cursive;font-size:80px;line-height:1;color:rgba(255,230,0,.04);pointer-events:none;user-select:none}
+.card-cat{font-size:8px;letter-spacing:.25em;text-transform:uppercase;margin-bottom:12px;display:flex;align-items:center;gap:6px}
+.cat-dot{width:5px;height:5px;border-radius:50%;flex-shrink:0}
+.card-cat.excl{color:var(--red2)} .card-cat.excl .cat-dot{background:var(--red2);animation:livepulse 1.4s infinite}
+.card-cat.rap{color:var(--yellow)} .card-cat.rap .cat-dot{background:var(--yellow)}
+.card-cat.rnb{color:#FF9000} .card-cat.rnb .cat-dot{background:#FF9000}
+.card-cat.celeb{color:#AA88FF} .card-cat.celeb .cat-dot{background:#AA88FF}
+.card-cat.battle{color:var(--red)} .card-cat.battle .cat-dot{background:var(--red)}
+.card-cat.bboy{color:var(--neon)} .card-cat.bboy .cat-dot{background:var(--neon)}
+.card-cat.indus{color:var(--cyan)} .card-cat.indus .cat-dot{background:var(--cyan)}
+.card-cat.graf{color:var(--fire)} .card-cat.graf .cat-dot{background:var(--fire)}
+.card-cat.sports{color:#00CCFF} .card-cat.sports .cat-dot{background:#00CCFF}
+.card-title{font-family:'Bebas Neue',cursive;font-size:clamp(22px,2.8vw,38px);line-height:1.05;color:var(--white);margin-bottom:12px;transition:color .2s}
+.card-hero:hover .card-title,.card-std:hover .card-title{color:var(--yellow)}
+.card-hero .card-title{font-size:clamp(28px,3.5vw,48px)}
+.card-excerpt{font-size:11px;color:var(--muted);line-height:1.75;margin-bottom:18px}
+.freq{display:flex;gap:2px;align-items:flex-end;height:24px;margin:16px 0}
+.fb{width:4px;background:var(--yellow);border-radius:1px;transform-origin:bottom;animation:freqAnim .7s ease-in-out infinite alternate}
+@keyframes freqAnim{to{transform:scaleY(.15)}}
+.card-meta{display:flex;align-items:center;justify-content:space-between;padding-top:14px;border-top:1px solid var(--border);font-size:9px;color:var(--muted);letter-spacing:.08em;margin-top:auto}
+.card-share{color:var(--red2);font-weight:500}
+.card-badge{display:inline-flex;align-items:center;gap:4px;font-size:8px;letter-spacing:.12em;padding:3px 8px;border-radius:1px;text-transform:uppercase}
+.badge-trend{background:rgba(255,230,0,.1);color:var(--yellow);border:1px solid rgba(255,230,0,.2)}
+.badge-hot{background:rgba(255,45,85,.1);color:var(--red2);border:1px solid rgba(255,45,85,.2)}
+.badge-new{background:rgba(204,0,0,.15);color:#FF5555;border:1px solid rgba(204,0,0,.3)}
+.badge-excl{background:rgba(170,136,255,.1);color:#AA88FF;border:1px solid rgba(170,136,255,.2)}
+.badge-fire{background:rgba(255,107,0,.12);color:var(--fire);border:1px solid rgba(255,107,0,.25)}
+.badge-neon{background:rgba(57,255,20,.08);color:var(--neon);border:1px solid rgba(57,255,20,.2)}
+.read-link{font-size:9px;letter-spacing:.15em;text-transform:uppercase;color:var(--yellow);display:flex;align-items:center;gap:6px;transition:gap .2s;margin-top:14px}
+.read-link::after{content:'→'}
+.card-hero:hover .read-link,.card-std:hover .read-link{gap:10px}
+
+/* ═══════════════ DROP ALERT LEAD GEN ═══════════════ */
+.drop-alert{background:var(--bg2);border:1px solid rgba(255,230,0,.1);padding:48px 5vw;position:relative;overflow:hidden}
+.drop-alert::before{
+  content:'DROP';position:absolute;right:-2vw;top:50%;transform:translateY(-50%);
+  font-family:'Bebas Neue',cursive;font-size:clamp(120px,18vw,220px);
+  color:rgba(255,230,0,.022);pointer-events:none;letter-spacing:-.02em;line-height:1;
+}
+.da-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;position:relative;z-index:1}
+.da-tag{display:inline-flex;align-items:center;gap:8px;font-size:8px;letter-spacing:.25em;color:var(--yellow);text-transform:uppercase;margin-bottom:16px;border:1px solid rgba(255,230,0,.2);padding:5px 12px}
+.da-tag::before{content:'⚡'}
+.da-title{font-family:'Bebas Neue',cursive;font-size:clamp(44px,5.5vw,72px);line-height:.92;color:var(--white);margin-bottom:16px}
+.da-title span{color:var(--yellow)}
+.da-desc{font-size:11px;color:var(--muted);line-height:1.8;margin-bottom:28px}
+.da-artists{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:28px}
+.da-artist{
+  display:flex;align-items:center;gap:10px;background:rgba(255,255,255,.04);
+  border:1px solid var(--border);padding:10px 14px;cursor:none;transition:all .2s;position:relative;overflow:hidden;
+}
+.da-artist:hover{border-color:rgba(255,230,0,.25);background:rgba(255,230,0,.04)}
+.da-artist.following{border-color:rgba(255,230,0,.4);background:rgba(255,230,0,.06)}
+.da-artist.following::after{content:'✓';position:absolute;right:12px;font-size:11px;color:var(--yellow)}
+.da-avatar{width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Bebas Neue',cursive;flex-shrink:0;font-size:11px;letter-spacing:.05em}
+.da-artist-name{font-size:10px;color:var(--white);letter-spacing:.06em}
+.da-artist-next{font-size:8px;color:var(--muted);margin-top:1px;letter-spacing:.05em}
+.da-form-label{font-size:8px;letter-spacing:.2em;color:var(--muted);text-transform:uppercase;margin-bottom:8px}
+.da-input-wrap{display:flex;gap:0}
+.da-input{flex:1;padding:14px 18px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-right:none;color:var(--white);font-size:12px;outline:none;transition:border-color .2s}
+.da-input:focus{border-color:rgba(255,230,0,.35)}
+.da-input::placeholder{color:rgba(255,255,255,.2)}
+.da-btn{padding:14px 22px;background:var(--yellow);color:#000;border:none;font-size:9px;letter-spacing:.18em;text-transform:uppercase;transition:background .15s;cursor:none}
+.da-btn:hover{background:#fff0a0}
+.da-note{font-size:8px;color:rgba(255,255,255,.2);margin-top:8px;letter-spacing:.06em}
+/* MOCKUP */
+.da-mockup{background:rgba(0,0,0,.4);border:1px solid var(--border)}
+.da-mock-header{background:rgba(255,255,255,.04);padding:12px 16px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--border)}
+.da-mock-title{font-family:'Bebas Neue',cursive;font-size:16px;letter-spacing:.1em;color:var(--yellow)}
+.da-mock-badge{font-size:7px;letter-spacing:.15em;color:var(--neon);border:1px solid rgba(57,255,20,.25);padding:3px 8px;text-transform:uppercase}
+.da-mock-body{padding:12px}
+.da-mock-row{display:flex;align-items:center;gap:12px;padding:10px 12px;margin-bottom:3px;border-left:2px solid}
+.da-mock-row.live{border-color:var(--neon);background:rgba(57,255,20,.04)}
+.da-mock-row.soon{border-color:var(--yellow);background:rgba(255,230,0,.03)}
+.da-mock-row.upcoming{border-color:rgba(255,255,255,.1);background:transparent}
+.da-mock-artist{font-family:'Bebas Neue',cursive;font-size:14px;letter-spacing:.06em;color:var(--white)}
+.da-mock-type{font-size:8px;color:var(--muted);letter-spacing:.08em;margin-top:1px}
+.da-mock-date{font-size:7px;color:var(--neon);letter-spacing:.1em;margin-top:2px;text-transform:uppercase}
+.da-mock-row.soon .da-mock-date{color:var(--yellow)}
+.da-mock-row.upcoming .da-mock-date{color:var(--muted)}
+.da-notif{display:flex;gap:10px;align-items:flex-start;padding:12px;background:rgba(255,230,0,.04);border:1px solid rgba(255,230,0,.1);margin-top:8px}
+.da-notif-icon{font-size:16px;flex-shrink:0;margin-top:-1px}
+.da-notif-text{font-size:9px;color:var(--muted);line-height:1.6;letter-spacing:.04em}
+.da-notif-text strong{color:var(--yellow)}
+
+/* ═══════════════ B-BOY & STREET DANCE SECTION ═══════════════ */
+.bboy-section{
+  padding:56px 5vw;position:relative;overflow:hidden;
+  background:linear-gradient(180deg, var(--bg) 0%, rgba(57,255,20,.02) 50%, var(--bg) 100%);
+  border-top:1px solid var(--border);
+}
+.bboy-section::before{
+  content:'CIPHER';position:absolute;left:-2vw;top:50%;transform:translateY(-50%);
+  font-family:'Bebas Neue',cursive;font-size:clamp(120px,18vw,260px);
+  color:rgba(57,255,20,.02);pointer-events:none;letter-spacing:-.02em;line-height:1;
+}
+.bb-grid{display:grid;grid-template-columns:1fr 340px;gap:48px;align-items:start}
+.bb-title-block{margin-bottom:28px}
+.bb-subtitle{font-size:11px;color:var(--muted);line-height:1.8;margin-bottom:24px;max-width:500px}
+/* DANCE STYLES CHIPS */
+.bb-styles{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:32px}
+.bb-style-chip{
+  font-size:8px;letter-spacing:.18em;text-transform:uppercase;
+  border:1px solid;padding:6px 14px;transition:all .2s;cursor:none;
+}
+.bb-style-chip:hover{background:rgba(57,255,20,.1)}
+.bsc-bb{border-color:rgba(57,255,20,.3);color:var(--neon)}
+.bsc-lk{border-color:rgba(255,230,0,.25);color:var(--yellow)}
+.bsc-pp{border-color:rgba(0,229,255,.25);color:var(--cyan)}
+.bsc-kr{border-color:rgba(255,45,85,.3);color:var(--red2)}
+.bsc-wk{border-color:rgba(155,89,182,.3);color:var(--purple)}
+.bsc-vg{border-color:rgba(255,107,0,.3);color:var(--fire)}
+.bsc-hh{border-color:rgba(255,255,255,.15);color:var(--muted)}
+/* B-BOY NEWS CARDS */
+.bb-cards{display:flex;flex-direction:column;gap:3px;margin-top:32px}
+.bb-card{
+  background:var(--card);padding:20px 22px;
+  border-left:2px solid var(--neon);transition:background .2s;cursor:none;
+}
+.bb-card:hover{background:var(--card2)}
+.bb-card-tag{font-size:7px;letter-spacing:.2em;color:var(--neon);text-transform:uppercase;margin-bottom:6px}
+.bb-card-title{font-family:'Bebas Neue',cursive;font-size:clamp(16px,2vw,22px);color:var(--white);line-height:1.1;margin-bottom:6px;transition:color .2s}
+.bb-card:hover .bb-card-title{color:var(--neon)}
+.bb-card-meta{font-size:8px;color:var(--muted);letter-spacing:.06em}
+/* CIPHER CIRCLE VISUAL */
+.bb-visual{display:flex;flex-direction:column;align-items:center;gap:24px;position:relative}
+.cipher-wrap{
+  position:relative;width:300px;height:300px;flex-shrink:0;
+}
+.cipher-outer{
+  position:absolute;inset:0;border-radius:50%;
+  border:1px solid rgba(57,255,20,.2);
+  animation:cipherSpin 25s linear infinite;
+}
+.cipher-mid{
+  position:absolute;inset:20px;border-radius:50%;
+  border:1px dashed rgba(57,255,20,.1);
+  animation:cipherSpin 15s linear infinite reverse;
+}
+.cipher-inner{
+  position:absolute;inset:40px;border-radius:50%;
+  border:1px solid rgba(255,230,0,.15);
+  animation:cipherSpin 8s linear infinite;
+}
+@keyframes cipherSpin{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+.cipher-text{
+  position:absolute;inset:0;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Permanent Marker',cursive;font-size:11px;
+  color:rgba(57,255,20,.5);text-align:center;line-height:1.4;
+  pointer-events:none;
+}
+/* BBOY SVG ANIMATIONS */
+.bboy-stage{
+  position:absolute;inset:55px;display:flex;align-items:center;justify-content:center;
+}
+.bboy-pose{position:absolute;inset:0;opacity:0;transition:opacity .3s}
+.bboy-pose.active{opacity:1}
+.bp-svg{width:100%;height:100%}
+/* Cipher corner crowd */
+.cipher-crowd{
+  position:absolute;font-size:11px;letter-spacing:.05em;
+  font-family:'DM Mono',monospace;color:rgba(255,255,255,.15);
+}
+.cipher-crowd.c1{top:8px;left:50%;transform:translateX(-50%);font-size:9px}
+.cipher-crowd.c2{right:8px;top:50%;transform:translateY(-50%) rotate(90deg);font-size:9px}
+.cipher-crowd.c3{bottom:8px;left:50%;transform:translateX(-50%);font-size:9px}
+.cipher-crowd.c4{left:8px;top:50%;transform:translateY(-50%) rotate(-90deg);font-size:9px}
+/* B-BOY POSE CARD STRIP */
+.bb-pose-strip{display:flex;gap:2px;width:100%}
+.bb-pose-item{
+  flex:1;aspect-ratio:1;background:var(--card);
+  display:flex;align-items:center;justify-content:center;
+  border-bottom:2px solid;transition:all .25s;cursor:none;
+  flex-direction:column;gap:4px;
+}
+.bb-pose-item:nth-child(1){border-color:var(--neon)}
+.bb-pose-item:nth-child(2){border-color:var(--yellow)}
+.bb-pose-item:nth-child(3){border-color:var(--fire)}
+.bb-pose-item:nth-child(4){border-color:var(--purple)}
+.bb-pose-item:hover{background:var(--card2);transform:translateY(-3px)}
+.bb-pose-label{font-size:6px;letter-spacing:.15em;color:var(--muted);text-transform:uppercase}
+.bb-pose-svg{width:40px;height:40px}
+
+/* ═══════════════ INDUSTRY MOVES ═══════════════ */
+.industry-section{
+  padding:56px 5vw;background:var(--bg2);position:relative;overflow:hidden;
+  border-top:1px solid var(--border);
+}
+.industry-section::before{
+  content:'MOVES';position:absolute;right:-1vw;top:50%;transform:translateY(-50%);
+  font-family:'Bebas Neue',cursive;font-size:clamp(100px,16vw,220px);
+  color:rgba(0,229,255,.02);pointer-events:none;letter-spacing:-.02em;line-height:1;
+}
+.moves-header{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:32px}
+.moves-ticker-row{
+  display:flex;gap:16px;font-size:8px;letter-spacing:.12em;color:var(--muted);
+  align-items:center;
+}
+.moves-ticker-live{color:var(--cyan);border:1px solid rgba(0,229,255,.2);padding:3px 10px}
+.moves-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:3px}
+.move-card{
+  background:var(--card);padding:20px 20px 24px;position:relative;overflow:hidden;
+  cursor:none;transition:background .2s;border-top:2px solid transparent;
+}
+.move-card:hover{background:var(--card2)}
+.move-type-strip{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}
+.move-type{
+  font-size:7px;letter-spacing:.22em;text-transform:uppercase;
+  border:1px solid;padding:3px 10px;
+}
+.mt-sign{border-color:rgba(57,255,20,.3);color:var(--neon)} .move-card.mt-sign{border-top-color:var(--neon)}
+.mt-beef{border-color:rgba(255,45,85,.3);color:var(--red2)} .move-card.mt-beef{border-top-color:var(--red2)}
+.mt-deal{border-color:rgba(0,229,255,.3);color:var(--cyan)} .move-card.mt-deal{border-top-color:var(--cyan)}
+.mt-collab{border-color:rgba(255,230,0,.3);color:var(--yellow)} .move-card.mt-collab{border-top-color:var(--yellow)}
+.mt-tour{border-color:rgba(255,107,0,.3);color:var(--fire)} .move-card.mt-tour{border-top-color:var(--fire)}
+.mt-award{border-color:rgba(155,89,182,.3);color:var(--purple)} .move-card.mt-award{border-top-color:var(--purple)}
+.move-impact{font-family:'Bebas Neue',cursive;font-size:11px;color:var(--muted);letter-spacing:.1em}
+.move-impact.up{color:var(--neon)}
+.move-impact.down{color:var(--red2)}
+.move-card-title{font-family:'Bebas Neue',cursive;font-size:clamp(18px,2.2vw,26px);color:var(--white);line-height:1.05;margin-bottom:10px;transition:color .2s}
+.move-card:hover .move-card-title{color:var(--yellow)}
+.move-desc{font-size:10px;color:var(--muted);line-height:1.65;margin-bottom:14px}
+.move-names{display:flex;flex-wrap:wrap;gap:6px}
+.move-name-tag{
+  font-size:7px;letter-spacing:.12em;text-transform:uppercase;
+  background:rgba(255,255,255,.05);border:1px solid var(--border);padding:3px 8px;color:var(--white);
+}
+.move-card-meta{display:flex;align-items:center;justify-content:space-between;padding-top:12px;border-top:1px solid var(--border);font-size:8px;color:var(--muted);letter-spacing:.08em;margin-top:12px}
+
+/* ═══════════════ STREAM TRUTH APP ═══════════════ */
+.stream-truth{background:var(--bg3);padding:56px 5vw;position:relative;overflow:hidden;border-top:1px solid var(--border)}
+.st-bg-word{position:absolute;left:-1vw;top:50%;transform:translateY(-50%);font-family:'Bebas Neue',cursive;font-size:clamp(100px,15vw,200px);color:rgba(255,45,85,.025);pointer-events:none;letter-spacing:-.02em;line-height:1}
+.st-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;position:relative;z-index:1}
+.st-app-tag{display:inline-flex;align-items:center;gap:8px;font-size:8px;letter-spacing:.2em;color:var(--red2);text-transform:uppercase;margin-bottom:16px;border:1px solid rgba(255,45,85,.2);padding:5px 12px}
+.st-title{font-family:'Bebas Neue',cursive;font-size:clamp(44px,5.5vw,72px);line-height:.92;color:var(--white);margin-bottom:16px}
+.st-title span{color:var(--red2)}
+.st-desc{font-size:11px;color:var(--muted);line-height:1.8;margin-bottom:24px}
+.st-how{display:flex;flex-direction:column;gap:14px;margin-bottom:28px}
+.st-step{display:flex;gap:16px;align-items:flex-start}
+.st-step-n{font-family:'Bebas Neue',cursive;font-size:24px;color:var(--red2);line-height:1;flex-shrink:0;width:28px}
+.st-step-text{font-size:10px;color:var(--muted);line-height:1.65;padding-top:4px}
+.st-step-text strong{color:var(--white)}
+.st-cta{display:inline-flex;align-items:center;gap:8px;font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:var(--red2);border:1px solid rgba(255,45,85,.3);padding:12px 24px;transition:all .2s}
+.st-cta:hover{background:rgba(255,45,85,.08);border-color:rgba(255,45,85,.6)}
+/* MOCK */
+.st-mock{background:#050000;border:1px solid var(--border);overflow:hidden}
+.st-mock-bar{background:rgba(255,255,255,.03);border-bottom:1px solid var(--border);padding:10px 16px;display:flex;align-items:center;gap:6px}
+.sm-dot{width:9px;height:9px;border-radius:50%;flex-shrink:0}
+.sm-r{background:#FF5F57}.sm-y{background:#FEBC2E}.sm-g{background:#28C840}
+.st-mock-title{font-size:9px;color:rgba(255,255,255,.25);letter-spacing:.1em;margin-left:auto}
+.st-mock-body{padding:20px}
+.st-input-row{display:flex;justify-content:space-between;align-items:center;background:rgba(255,255,255,.04);border:1px solid var(--border);padding:10px 14px;margin-bottom:16px;font-size:10px;color:rgba(255,255,255,.3);letter-spacing:.04em}
+.st-input-arrow{color:var(--yellow)}
+.st-gauge{background:rgba(255,255,255,.04);border:1px solid var(--border);padding:20px;margin-bottom:12px;display:flex;align-items:center;gap:20px}
+.st-gauge-fill{width:72%;height:6px;background:linear-gradient(90deg,var(--red2),var(--yellow));border-radius:3px;flex-shrink:0;position:relative}
+.st-gauge-fill::after{content:'';position:absolute;right:0;top:-3px;width:12px;height:12px;border-radius:50%;background:var(--yellow);border:2px solid #000}
+.st-gauge-text{}
+.st-gauge-score{font-family:'Bebas Neue',cursive;font-size:32px;color:var(--yellow);line-height:1}
+.st-gauge-label{font-size:8px;color:var(--muted);letter-spacing:.1em;text-transform:uppercase}
+.st-factors{display:flex;flex-direction:column;gap:8px}
+.st-factor{display:flex;gap:10px;align-items:flex-start;font-size:9px;line-height:1.5;letter-spacing:.04em}
+.st-factor.pass{color:var(--neon)} .st-factor.fail{color:var(--red2)} .st-factor.warn{color:var(--yellow)}
+.st-factor-icon{font-size:11px;flex-shrink:0}
+.st-factor-text{color:var(--muted)}
+.st-factor-text span{color:var(--white)}
+
+/* ═══════════════ CYPHER / BATTLE RAP ═══════════════ */
+.cypher-section{
+  padding:56px 5vw;background:var(--bg);position:relative;overflow:hidden;
+  border-top:1px solid var(--border);
+}
+.cypher-section::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse at 50% 50%, rgba(204,0,0,.06) 0%, transparent 65%);
+  pointer-events:none;
+}
+.battle-grid{display:grid;grid-template-columns:1.2fr 0.8fr;gap:3px}
+.battle-main{
+  background:var(--card);padding:36px 32px;position:relative;overflow:hidden;cursor:none;
+  transition:background .2s;border-right:3px solid var(--red);
+}
+.battle-main:hover{background:var(--card2)}
+.battle-bg{
+  position:absolute;right:-12px;top:50%;transform:translateY(-50%);
+  font-family:'Bebas Neue',cursive;font-size:clamp(120px,18vw,220px);
+  color:rgba(204,0,0,.04);pointer-events:none;line-height:1;letter-spacing:-.02em;
+}
+.battle-vs{
+  font-family:'Bebas Neue',cursive;font-size:clamp(80px,12vw,140px);
+  color:var(--red);line-height:1;letter-spacing:-.01em;
+  text-shadow:0 0 40px rgba(204,0,0,.4);
+  margin-bottom:24px;animation:vsflicker 4s ease-in-out infinite;
+}
+@keyframes vsflicker{0%,100%{opacity:1}45%{opacity:1}50%{opacity:.7}55%{opacity:1}85%{opacity:1}87%{opacity:.5}89%{opacity:1}}
+.battle-a{display:flex;flex-direction:column;gap:3px;margin-bottom:24px}
+.battle-a-tag{font-size:7px;letter-spacing:.25em;color:var(--red);text-transform:uppercase}
+.battle-a-name{font-family:'Bebas Neue',cursive;font-size:clamp(28px,3.5vw,44px);color:var(--white);line-height:.95;transition:color .2s}
+.battle-main:hover .battle-a-name:first-of-type{color:var(--yellow)}
+.battle-a-bar{width:60%;height:2px;background:var(--red);position:relative;overflow:hidden;margin:8px 0}
+.battle-a-bar::after{content:'';position:absolute;top:0;left:-100%;height:100%;width:50%;background:var(--yellow);animation:barswipe 3s ease infinite}
+@keyframes barswipe{to{left:150%}}
+.battle-league{
+  display:inline-flex;align-items:center;gap:8px;font-size:8px;letter-spacing:.15em;
+  color:var(--muted);border:1px solid var(--border);padding:5px 12px;margin-top:8px;
+}
+.battle-league strong{color:var(--red2)}
+.battle-card-sm{background:var(--card);padding:24px;cursor:none;transition:background .2s;border-top:2px solid var(--border)}
+.battle-card-sm:hover{background:var(--card2);border-top-color:var(--red)}
+.battle-card-sm .card-title{font-size:clamp(18px,2.2vw,26px)}
+/* BATTLE QUOTE */
+.battle-quote{
+  border-left:3px solid var(--red);padding:16px 20px;margin:24px 0;
+  background:rgba(204,0,0,.04);
+}
+.battle-quote-text{font-family:'Permanent Marker',cursive;font-size:13px;color:rgba(255,255,255,.8);line-height:1.6;margin-bottom:8px}
+.battle-quote-attr{font-size:8px;color:var(--muted);letter-spacing:.12em}
+
+/* ═══════════════ ARTIST SPOTLIGHT CAROUSEL ═══════════════ */
+.spotlight{background:var(--bg2);padding:56px 5vw;position:relative;overflow:hidden}
+.spotlight::before{content:'ARTISTS';position:absolute;left:-1vw;bottom:-20px;font-family:'Bebas Neue',cursive;font-size:clamp(80px,12vw,150px);color:rgba(255,230,0,.02);pointer-events:none;letter-spacing:-.01em;line-height:1}
+.sp-scroll{display:flex;gap:3px;overflow-x:auto;scrollbar-width:none;padding-bottom:4px;margin-top:32px}
+.sp-scroll::-webkit-scrollbar{display:none}
+.sp-card{min-width:220px;max-width:220px;background:var(--card);flex-shrink:0;cursor:none;transition:transform .25s;position:relative;overflow:hidden}
+.sp-card:hover{transform:translateY(-6px)}
+.sp-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:transparent;transition:background .2s}
+.sp-card:hover::before{background:var(--yellow)}
+.sp-img{width:100%;height:180px;position:relative;overflow:hidden}
+.sp-img-bg{position:absolute;inset:0;transition:transform .5s}
+.sp-card:hover .sp-img-bg{transform:scale(1.06)}
+.sp-body{padding:18px 16px}
+.sp-name{font-family:'Bebas Neue',cursive;font-size:22px;color:var(--white);letter-spacing:.04em;margin-bottom:4px;transition:color .2s}
+.sp-card:hover .sp-name{color:var(--yellow)}
+.sp-genre{font-size:8px;color:var(--muted);letter-spacing:.15em;text-transform:uppercase;margin-bottom:10px}
+.sp-stats{display:flex;gap:12px}
+.sp-stat-s{font-size:9px;color:var(--muted)}
+.sp-stat-s strong{color:var(--yellow);font-family:'DM Mono',monospace}
+.sp-new-badge{position:absolute;top:12px;right:12px;background:var(--red2);color:#000;font-size:7px;letter-spacing:.12em;padding:3px 7px;text-transform:uppercase;font-weight:500}
+
+/* ═══════════════ R&B SECTION ═══════════════ */
+.rnb-section{padding:56px 5vw;background:var(--bg);position:relative;overflow:hidden;border-top:1px solid var(--border)}
+.rnb-section::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 80% 50%,rgba(255,144,0,.04) 0%,transparent 60%);pointer-events:none}
+/* VINYL RECORD */
+.vinyl-wrap{position:absolute;right:-60px;top:50%;transform:translateY(-50%);opacity:.06;pointer-events:none}
+.vinyl{width:320px;height:320px;border-radius:50%;background:conic-gradient(from 0deg,#111 0%,#222 25%,#111 25%,#222 50%,#111 50%,#222 75%,#111 75%,#222 100%);animation:vinylspin 4s linear infinite;position:relative}
+.vinyl::before{content:'';position:absolute;inset:40%;border-radius:50%;background:radial-gradient(circle,#FF9000 0%,#333 60%)}
+.vinyl::after{content:'';position:absolute;inset:49%;border-radius:50%;background:#000}
+@keyframes vinylspin{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+.rnb-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:3px;margin-top:32px;position:relative;z-index:1}
+.rnb-card{background:var(--card);padding:24px;cursor:none;transition:background .2s;position:relative;overflow:hidden}
+.rnb-card::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:transparent;transition:background .25s}
+.rnb-card:hover{background:var(--card2)}
+.rnb-card:hover::after{background:#FF9000}
+.rnb-img{width:100%;height:160px;margin-bottom:16px;position:relative;overflow:hidden}
+.rnb-img-bg{position:absolute;inset:0;transition:transform .5s}
+.rnb-card:hover .rnb-img-bg{transform:scale(1.06)}
+.rnb-play{position:absolute;bottom:12px;right:12px;width:36px;height:36px;background:rgba(255,144,0,.85);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;opacity:0;transition:opacity .2s}
+.rnb-card:hover .rnb-play{opacity:1}
+/* SOUL BAR - EQ visual on RNB */
+.rnb-eq{display:flex;gap:2px;align-items:flex-end;height:20px;margin:10px 0}
+.rnb-bar{width:3px;background:#FF9000;border-radius:1px;transform-origin:bottom;animation:freqAnim .6s ease-in-out infinite alternate}
+
+/* ═══════════════ CULTURE CHART ═══════════════ */
+.culture-chart{background:var(--bg2);padding:56px 5vw;border-top:1px solid var(--border)}
+.cc-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:40px;margin-top:32px}
+.cc-list{display:flex;flex-direction:column;gap:0}
+.cc-item{display:flex;gap:16px;align-items:flex-start;padding:18px 0;border-bottom:1px solid var(--border);cursor:none;transition:all .15s;position:relative}
+.cc-item:hover{padding-left:8px}
+.cc-item::before{content:'';position:absolute;left:0;top:0;bottom:0;width:0;background:var(--red);transition:width .2s}
+.cc-item:hover::before{width:2px}
+.cc-rank{font-family:'Bebas Neue',cursive;font-size:32px;line-height:1;min-width:32px;transition:color .2s}
+.cc-item:hover .cc-rank{color:var(--yellow)}
+.cc-rank.top{color:var(--yellow)}.cc-rank.mid{color:rgba(255,230,0,.4)}.cc-rank.low{color:rgba(255,255,255,.12)}
+.cc-info{flex:1}
+.cc-ttl{font-family:'Bebas Neue',cursive;font-size:clamp(16px,1.8vw,22px);color:var(--white);line-height:1.1;margin-bottom:4px;transition:color .2s}
+.cc-item:hover .cc-ttl{color:var(--yellow)}
+.cc-meta-row{display:flex;gap:12px;font-size:8px;color:var(--muted);letter-spacing:.1em}
+.cc-chg{font-family:'DM Mono',monospace;font-size:9px;display:flex;align-items:center;gap:3px;flex-shrink:0}
+.chg-up{color:var(--neon)}.chg-down{color:var(--red2)}.chg-new{color:var(--yellow)}
+.cc-sidebar{background:var(--card);padding:24px}
+.cc-sb-title{font-family:'Bebas Neue',cursive;font-size:22px;color:var(--yellow);margin-bottom:20px;letter-spacing:.05em}
+.cc-poll{display:flex;flex-direction:column;gap:12px}
+.cc-poll-q{font-size:10px;color:var(--white);line-height:1.5;margin-bottom:14px}
+.cc-opt{background:rgba(255,255,255,.04);border:1px solid var(--border);padding:12px 14px;cursor:none;position:relative;overflow:hidden;transition:border-color .2s;display:flex;justify-content:space-between;align-items:center}
+.cc-opt:hover{border-color:rgba(255,230,0,.25)}
+.cc-opt-fill{position:absolute;left:0;top:0;bottom:0;background:rgba(255,230,0,.06);transition:width .5s ease .3s}
+.cc-opt-text{font-size:10px;color:var(--white);position:relative;z-index:1}
+.cc-opt-pct{font-family:'Bebas Neue',cursive;font-size:18px;color:var(--yellow);position:relative;z-index:1}
+.cc-voted{font-size:8px;color:var(--muted);margin-top:10px;letter-spacing:.1em;text-align:center}
+
+/* ═══════════════ HOOK TESTER ═══════════════ */
+.hook-section{background:#040106;padding:56px 5vw;border-top:1px solid var(--border);border-bottom:1px solid var(--border);position:relative;overflow:hidden}
+.hook-section::before{content:'HOOK';position:absolute;right:-2vw;bottom:-20px;font-family:'Bebas Neue',cursive;font-size:clamp(80px,14vw,180px);color:rgba(255,230,0,.022);pointer-events:none;letter-spacing:-.02em;line-height:1}
+.hook-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:start;position:relative;z-index:1}
+.hook-tool{background:var(--card);border:1px solid var(--border);overflow:hidden}
+.hook-bar{background:#0A0010;border-bottom:1px solid var(--border);padding:10px 16px;display:flex;align-items:center;gap:6px}
+.hook-bar-title{font-size:9px;color:var(--muted);letter-spacing:.12em;margin-left:auto}
+.hook-body{padding:20px}
+.hook-inp-wrap{position:relative;margin-bottom:12px}
+.hook-inp{width:100%;padding:12px 14px;background:rgba(255,255,255,.04);border:1px solid var(--border);color:var(--white);font-size:11px;outline:none;resize:none;height:70px;transition:border-color .2s;font-family:'DM Mono',monospace}
+.hook-inp:focus{border-color:rgba(255,230,0,.3)}
+.hook-inp::placeholder{color:rgba(255,255,255,.15)}
+.hook-analyze{width:100%;padding:11px;background:var(--yellow);color:#000;border:none;font-size:9px;letter-spacing:.18em;text-transform:uppercase;transition:background .15s;cursor:none}
+.hook-analyze:hover{background:#fff0a0}
+.hook-result{margin-top:14px}
+.hook-score-row{display:flex;align-items:baseline;gap:12px;margin-bottom:8px}
+.hook-score-num{font-family:'Bebas Neue',cursive;font-size:64px;color:var(--yellow);line-height:1}
+.hook-score-info{flex:1}
+.hook-score-label{font-size:11px;color:var(--white);margin-bottom:2px}
+.hook-score-sub{font-size:9px;color:var(--muted);line-height:1.5}
+.hook-meter{height:4px;background:rgba(255,255,255,.08);margin:10px 0;border-radius:2px;overflow:hidden}
+.hook-meter-fill{height:100%;background:linear-gradient(90deg,var(--red2),var(--yellow));width:87%;animation:meteranim 1.5s ease .3s both}
+@keyframes meteranim{from{width:0%}}
+.hook-factors{display:flex;gap:6px;flex-wrap:wrap;margin-top:10px}
+.hf-tag{font-size:8px;letter-spacing:.1em;padding:3px 8px;border-radius:1px;text-transform:uppercase}
+.hf-pass{background:rgba(57,255,20,.1);color:var(--neon);border:1px solid rgba(57,255,20,.15)}
+.hf-partial{background:rgba(255,230,0,.1);color:var(--yellow);border:1px solid rgba(255,230,0,.15)}
+
+/* ═══════════════ GRAFFITI WALL ═══════════════ */
+.graf-wall{
+  padding:56px 5vw;position:relative;overflow:hidden;
+  background:var(--bg3);border-top:1px solid var(--border);
+}
+.graf-wall::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse at 30% 60%, rgba(255,107,0,.05) 0%, transparent 60%),
+             radial-gradient(ellipse at 80% 30%, rgba(155,89,182,.04) 0%, transparent 50%);
+  pointer-events:none;
+}
+.graf-inner{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center;position:relative;z-index:1}
+.graf-quote-block{}
+.graf-tag{
+  font-family:'Permanent Marker',cursive;
+  font-size:clamp(40px,6vw,72px);line-height:1.1;
+  color:var(--fire);text-shadow:3px 3px 0 rgba(0,0,0,.5);
+  margin-bottom:20px;transform:rotate(-1.5deg);display:inline-block;
+}
+.graf-quote{
+  font-family:'Permanent Marker',cursive;font-size:18px;
+  color:rgba(255,255,255,.7);line-height:1.5;margin-bottom:16px;
+  padding-left:20px;border-left:3px solid var(--fire);
+}
+.graf-attr{font-size:9px;letter-spacing:.18em;color:var(--muted);text-transform:uppercase;padding-left:20px}
+.graf-cards{display:flex;flex-direction:column;gap:3px}
+.graf-card{background:var(--card);padding:20px 22px;border-left:2px solid var(--fire);cursor:none;transition:background .2s}
+.graf-card:hover{background:var(--card2)}
+.graf-card-cat{font-size:7px;letter-spacing:.22em;color:var(--fire);text-transform:uppercase;margin-bottom:6px}
+.graf-card-title{font-family:'Bebas Neue',cursive;font-size:clamp(16px,2vw,22px);color:var(--white);line-height:1.1;margin-bottom:6px;transition:color .2s}
+.graf-card:hover .graf-card-title{color:var(--fire)}
+.graf-card-meta{font-size:8px;color:var(--muted);letter-spacing:.06em}
+/* BIG BACKGROUND GRAFFITI LETTERING */
+.graf-bg-letters{
+  position:absolute;bottom:-30px;left:-2vw;right:-2vw;
+  font-family:'Permanent Marker',cursive;font-size:clamp(60px,10vw,130px);
+  color:rgba(255,107,0,.04);pointer-events:none;user-select:none;
+  white-space:nowrap;overflow:hidden;line-height:1;
+}
+
+/* ═══════════════ NEWSLETTER ═══════════════ */
+.nl-section{background:var(--bg3);padding:64px 5vw;position:relative;overflow:hidden;border-top:1px solid var(--border)}
+.nl-section::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 50% 50%,rgba(255,230,0,.04) 0%,transparent 70%);pointer-events:none}
+.nl-inner{max-width:640px;margin:0 auto;text-align:center;position:relative;z-index:1}
+.nl-kicker{font-size:8px;letter-spacing:.3em;color:var(--yellow);text-transform:uppercase;margin-bottom:16px;display:flex;align-items:center;justify-content:center;gap:12px}
+.nl-kicker::before,.nl-kicker::after{content:'';width:24px;height:1px;background:var(--yellow)}
+.nl-title{font-family:'Bebas Neue',cursive;font-size:clamp(52px,8vw,100px);line-height:.88;color:var(--white);margin-bottom:16px}
+.nl-title span{-webkit-text-stroke:1px rgba(255,230,0,.25);color:transparent}
+.nl-desc{font-size:11px;color:var(--muted);line-height:1.8;margin-bottom:32px}
+.nl-perks{display:flex;justify-content:center;gap:24px;margin-bottom:28px;flex-wrap:wrap}
+.nl-perk{display:flex;align-items:center;gap:6px;font-size:9px;color:var(--muted);letter-spacing:.08em}
+.nl-perk::before{content:'✦';color:var(--yellow);font-size:7px}
+.nl-form{display:flex;max-width:480px;margin:0 auto}
+.nl-input{flex:1;padding:14px 18px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-right:none;color:var(--white);font-size:12px;outline:none;transition:border-color .2s}
+.nl-input:focus{border-color:rgba(255,230,0,.35)}
+.nl-input::placeholder{color:rgba(255,255,255,.2)}
+.nl-btn{padding:14px 28px;background:var(--red2);color:#000;border:none;font-size:10px;letter-spacing:.18em;text-transform:uppercase;transition:background .15s;cursor:none}
+.nl-btn:hover{background:#ff4d6e}
+.nl-note{font-size:9px;color:rgba(255,255,255,.2);margin-top:12px;letter-spacing:.06em}
+.nl-social-proof{display:flex;align-items:center;justify-content:center;gap:16px;margin-top:24px;padding-top:24px;border-top:1px solid var(--border);font-size:9px;color:var(--muted)}
+.nl-avatars{display:flex;margin-right:4px}
+.nl-av{width:22px;height:22px;border-radius:50%;background:var(--card2);border:1px solid var(--border);margin-left:-6px;display:flex;align-items:center;justify-content:center;font-size:9px}
+.nl-av:first-child{margin-left:0}
+
+/* ═══════════════ FOOTER ═══════════════ */
+.page-footer{background:#020103;padding:40px 5vw 24px;border-top:1px solid var(--border)}
+.ft-top{display:flex;align-items:center;justify-content:space-between;padding-bottom:24px;border-bottom:1px solid var(--border);margin-bottom:24px}
+.ft-logo{font-family:'Bebas Neue',cursive;font-size:22px;letter-spacing:.08em;text-transform:uppercase}
+.ft-logo span{color:var(--yellow)}
+.ft-tagline{font-size:9px;color:var(--muted);letter-spacing:.1em}
+.ft-links{display:flex;gap:20px}
+.ft-links a{font-size:9px;letter-spacing:.15em;color:var(--muted);text-transform:uppercase;transition:color .2s}
+.ft-links a:hover{color:var(--yellow)}
+.ft-bottom{display:flex;align-items:center;justify-content:space-between;font-size:8px;color:rgba(255,255,255,.18);letter-spacing:.1em}
+.ft-social{display:flex;gap:14px}
+.ft-social a{color:rgba(255,255,255,.2);letter-spacing:.15em;text-transform:uppercase;transition:color .2s;font-size:8px}
+.ft-social a:hover{color:var(--red2)}
+
+/* ═══════════════ SCROLL REVEAL ═══════════════ */
+.reveal{opacity:0;transform:translateY(40px);transition:opacity .75s ease,transform .75s ease}
+.reveal.on{opacity:1;transform:none}
+.reveal-left{opacity:0;transform:translateX(-30px);transition:opacity .75s ease,transform .75s ease}
+.reveal-left.on{opacity:1;transform:none}
+.reveal-right{opacity:0;transform:translateX(30px);transition:opacity .75s ease,transform .75s ease}
+.reveal-right.on{opacity:1;transform:none}
+
+/* ═══════════════ FLOATING SHARE ═══════════════ */
+.share-bar{position:fixed;right:20px;top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:6px;z-index:100}
+.share-btn{width:34px;height:34px;border:1px solid var(--border);background:var(--bg2);display:flex;align-items:center;justify-content:center;font-size:9px;color:var(--muted);cursor:none;transition:all .2s;font-family:'DM Mono',monospace;letter-spacing:0}
+.share-btn:hover{border-color:var(--yellow);color:var(--yellow);background:rgba(255,230,0,.06)}
+
+/* ═══════════════ UTILITY ═══════════════ */
+.mt8{margin-top:8px}.mt12{margin-top:12px}.mt16{margin-top:16px}
+
+/* ═══════════════ RESPONSIVE ═══════════════ */
+@media(max-width:900px){
+  .main-grid,.battle-grid,.bb-grid,.moves-grid{grid-template-columns:1fr}
+  .card-hero{grid-row:auto}
+  .da-grid,.st-grid,.hook-grid,.cc-grid,.rnb-grid,.graf-inner{grid-template-columns:1fr}
+  .da-artists{grid-template-columns:1fr}
+  .ph-stats{flex-wrap:wrap}
+  .sp-scroll{padding-right:5vw}
+  .share-bar{display:none}
+  .ph-culture-tags{display:none}
+  .vinyl-wrap{display:none}
+  .cipher-wrap{width:220px;height:220px}
+}
+</style>
+</head>
+<body>
+
+<!-- CUSTOM CURSOR -->
+<div id="cur"></div>
+<div id="cur-r"></div>
+
+<!-- ═══ VERTICAL NAV ═══ -->
+<nav class="v-nav">
+  <div class="vn-logo">Buzz<span>Wire</span></div>
+  <div class="vn-sep"></div>
+  <div class="vn-links">
+    <a href="#" class="vn-link on">🎤<div class="vn-tip">Urban</div></a>
+    <a href="#" class="vn-link">💿<div class="vn-tip">Drops</div></a>
+    <a href="#" class="vn-link">🕺<div class="vn-tip">BBoy</div></a>
+    <a href="#" class="vn-link">⚔️<div class="vn-tip">Battle</div></a>
+    <a href="#" class="vn-link">🏢<div class="vn-tip">Industry</div></a>
+    <a href="#" class="vn-link">🎙️<div class="vn-tip">R&B</div></a>
+    <a href="#" class="vn-link">✍<div class="vn-tip">Graf</div></a>
+  </div>
+  <a href="#" class="vn-back">⌂</a>
+  <div class="vn-live">
+    <div class="vn-dot"></div>
+    <div class="vn-live-text">LIVE</div>
+  </div>
+</nav>
+
+<div class="main">
+
+<!-- ═══ PAGE HERO ═══ -->
+<header class="page-hero">
+  <canvas class="ph-canvas" id="heroCanvas"></canvas>
+  <div class="ph-bg-text">HH</div>
+
+  <!-- CULTURE ELEMENT TAGS -->
+  <div class="ph-culture-tags">
+    <div class="ph-ctag mc">MC / EMCEE</div>
+    <div class="ph-ctag dj">DJ / TURNTABLISM</div>
+    <div class="ph-ctag bb">B-BOY / B-GIRL</div>
+    <div class="ph-ctag gr">GRAFFITI / WRITING</div>
+    <div class="ph-ctag kn">KNOWLEDGE</div>
+  </div>
+
+  <div class="ph-top-bar">
+    <div class="ph-breadcrumb">
+      <a href="#">Home</a>
+      <span>/</span>
+      <span>Hip-Hop & Urban Culture</span>
+    </div>
+    <div class="ph-live">
+      <div class="ph-live-dot"></div>
+      Live Coverage
+    </div>
+  </div>
+
+  <div class="ph-headline-wrap">
+    <div class="ph-section-num">Section 01 of 7 — Urban Culture</div>
+    <h1 class="ph-title">
+      <span class="ph-title-line"><span class="ph-title-inner">HIP</span></span>
+      <span class="ph-title-line"><span class="ph-title-inner y">HOP</span></span>
+      <span class="ph-title-line"><span class="ph-title-inner dim">CULTURE</span></span>
+    </h1>
+    <p class="ph-tagline">DROPS · BATTLE RAP · BBOY · STREET ART · INDUSTRY MOVES · R&B · THE STREETS</p>
+  </div>
+
+  <div class="ph-stats">
+    <div class="ph-stat">
+      <div class="ph-stat-n">5</div>
+      <div class="ph-stat-l">Elements of<br>Hip-Hop Culture</div>
+    </div>
+    <div class="ph-stat">
+      <div class="ph-stat-n">50+</div>
+      <div class="ph-stat-l">Years of<br>Cultural History</div>
+    </div>
+    <div class="ph-stat">
+      <div class="ph-stat-n">24K</div>
+      <div class="ph-stat-l">Daily Active<br>Readers</div>
+    </div>
+    <div class="ph-stat">
+      <div class="ph-stat-n">LIVE</div>
+      <div class="ph-stat-l">Drop alerts<br>active now</div>
+    </div>
+  </div>
+</header>
+
+<!-- ═══ BREAKING TICKER ═══ -->
+<div class="ticker">
+  <div class="ticker-label">Breaking</div>
+  <div class="ticker-wrap">
+    <span class="tick-i">Kendrick's untitled LP rollout begins</span>
+    <span class="tick-i">Red Bull BC One World Finals — Tokyo confirmed</span>
+    <span class="tick-i">Drake world tour presale drops Thursday</span>
+    <span class="tick-i">Graffiti artist KAWS gets MoMA retrospective</span>
+    <span class="tick-i">Battle league URL announces supercard event</span>
+    <span class="tick-i">SZA LANA II rollout — tracklist leaked</span>
+    <span class="tick-i">Pharrell tapped for Def Jam creative director role</span>
+    <span class="tick-i">Waacking battles at Summer Stage NYC</span>
+    <span class="tick-i">Kendrick's untitled LP rollout begins</span>
+    <span class="tick-i">Red Bull BC One World Finals — Tokyo confirmed</span>
+    <span class="tick-i">Drake world tour presale drops Thursday</span>
+    <span class="tick-i">Graffiti artist KAWS gets MoMA retrospective</span>
+    <span class="tick-i">Battle league URL announces supercard event</span>
+    <span class="tick-i">SZA LANA II rollout — tracklist leaked</span>
+    <span class="tick-i">Pharrell tapped for Def Jam creative director role</span>
+    <span class="tick-i">Waacking battles at Summer Stage NYC</span>
+  </div>
+</div>
+
+<!-- ═══ THE 5 ELEMENTS BANNER ═══ -->
+<div class="five-elements">
+  <div class="five-el-track">
+    <!-- Block 1 -->
+    <div class="el-item"><span class="el-icon">🎤</span><div class="el-info"><span class="el-num">Element 01</span><span class="el-name">MC / Emcee</span></div></div>
+    <div class="el-item"><span class="el-icon">🎧</span><div class="el-info"><span class="el-num">Element 02</span><span class="el-name">DJ / Turntablism</span></div></div>
+    <div class="el-item"><span class="el-icon">🕺</span><div class="el-info"><span class="el-num">Element 03</span><span class="el-name">B-Boy / B-Girl</span></div></div>
+    <div class="el-item"><span class="el-icon">✍️</span><div class="el-info"><span class="el-num">Element 04</span><span class="el-name">Graffiti / Writing</span></div></div>
+    <div class="el-item"><span class="el-icon">📖</span><div class="el-info"><span class="el-num">Element 05</span><span class="el-name">Knowledge</span></div></div>
+    <div class="el-item" style="border-right:1px solid rgba(255,230,0,.12);background:rgba(255,230,0,.015)"><span class="el-icon">🌍</span><div class="el-info"><span class="el-num">Afrika Bambaataa · 1973</span><span class="el-name" style="font-size:15px">The Foundation</span></div></div>
+    <!-- Block 2 (loop) -->
+    <div class="el-item"><span class="el-icon">🎤</span><div class="el-info"><span class="el-num">Element 01</span><span class="el-name">MC / Emcee</span></div></div>
+    <div class="el-item"><span class="el-icon">🎧</span><div class="el-info"><span class="el-num">Element 02</span><span class="el-name">DJ / Turntablism</span></div></div>
+    <div class="el-item"><span class="el-icon">🕺</span><div class="el-info"><span class="el-num">Element 03</span><span class="el-name">B-Boy / B-Girl</span></div></div>
+    <div class="el-item"><span class="el-icon">✍️</span><div class="el-info"><span class="el-num">Element 04</span><span class="el-name">Graffiti / Writing</span></div></div>
+    <div class="el-item"><span class="el-icon">📖</span><div class="el-info"><span class="el-num">Element 05</span><span class="el-name">Knowledge</span></div></div>
+    <div class="el-item" style="border-right:1px solid rgba(255,230,0,.12);background:rgba(255,230,0,.015)"><span class="el-icon">🌍</span><div class="el-info"><span class="el-num">Afrika Bambaataa · 1973</span><span class="el-name" style="font-size:15px">The Foundation</span></div></div>
+  </div>
+  <div class="five-el-quote">"Rap is something you do.<br>Hip Hop is something you live."<br>— KRS-One</div>
+</div>
+
+<!-- ═══ MAIN NEWS GRID ═══ -->
+<section class="section" id="news">
+  <div class="sec-label spray-label">Latest — Hip-Hop News</div>
+  <div class="sec-h">THE <span class="y">WORD</span> <span class="dim">ON</span><br>THE STREET</div>
+
+  <div class="main-grid">
+    <!-- HERO CARD -->
+    <div class="card-hero">
+      <div class="card-bg-num">01</div>
+      <div class="card-cat excl"><div class="cat-dot"></div>Exclusive · Breaking</div>
+      <h2 class="card-title">Kendrick Lamar's Untitled LP Rollout Has Officially Begun — And It's Nothing Like You Expect</h2>
+      <div class="freq">
+        <div class="fb" style="height:60%"></div><div class="fb" style="height:90%"></div><div class="fb" style="height:45%"></div><div class="fb" style="height:100%"></div><div class="fb" style="height:70%"></div><div class="fb" style="height:55%"></div><div class="fb" style="height:80%"></div><div class="fb" style="height:40%"></div><div class="fb" style="height:95%"></div><div class="fb" style="height:65%"></div><div class="fb" style="height:50%"></div><div class="fb" style="height:85%"></div>
+      </div>
+      <p class="card-excerpt">Cryptic billboards. Three confirmed production credits. PgLang radio silence. Buzzwire unpacks every confirmed detail about the most anticipated hip-hop release since DAMN., breaking down what the rollout strategy signals about the project's sonic direction and release window.</p>
+      <div class="card-meta">
+        <span>8 min read</span>
+        <span class="card-badge badge-trend">🔥 Trending</span>
+        <span class="card-share">Share →</span>
+      </div>
+      <a href="#" class="read-link">Full Story</a>
+    </div>
+
+    <!-- CARD 02 -->
+    <div class="card-std">
+      <div class="card-bg-num-sm">02</div>
+      <div class="card-cat rap"><div class="cat-dot"></div>Hip-Hop · Drops</div>
+      <h3 class="card-title">The 10 Biggest Albums Dropping This Summer — Ranked By Anticipation</h3>
+      <p class="card-excerpt">From confirmed albums to rumored surprise drops, our editors break down who's set to win the summer.</p>
+      <div class="card-meta">
+        <span>5 min</span>
+        <span class="card-badge badge-trend">Top List</span>
+      </div>
+    </div>
+
+    <!-- CARD 03 -->
+    <div class="card-std">
+      <div class="card-bg-num-sm">03</div>
+      <div class="card-cat rnb"><div class="cat-dot"></div>R&B</div>
+      <h3 class="card-title">SZA's Unreleased Vault: Everything We Know About LANA II</h3>
+      <p class="card-excerpt">Feature confirmations, production credits, and why this could be her most personal work to date.</p>
+      <div class="card-meta">
+        <span>4 min</span>
+        <span class="card-badge badge-hot">Hot</span>
+      </div>
+    </div>
+
+    <!-- CARD 04 -->
+    <div class="card-std">
+      <div class="card-bg-num-sm">04</div>
+      <div class="card-cat bboy"><div class="cat-dot"></div>B-Boy Culture</div>
+      <h3 class="card-title">BC One World Finals Set For Tokyo — US Squad Locks In</h3>
+      <p class="card-excerpt">American b-boys and b-girls are ready to take the title back to the Bronx. The full US roster is confirmed.</p>
+      <div class="card-meta">
+        <span>3 min</span>
+        <span class="card-badge badge-neon">Live Event</span>
+      </div>
+    </div>
+
+    <!-- CARD 05 -->
+    <div class="card-std">
+      <div class="card-bg-num-sm">05</div>
+      <div class="card-cat battle"><div class="cat-dot"></div>Battle Rap</div>
+      <h3 class="card-title">Battle Rap Leagues Thrive While Labels Struggle — The Numbers Tell a Story</h3>
+      <p class="card-excerpt">The underground economy of live battle rap is pulling millions with zero streaming dependency.</p>
+      <div class="card-meta">
+        <span>6 min</span>
+        <span class="card-badge badge-new">Breaking</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ DROP ALERT ═══ -->
+<section class="drop-alert reveal" id="dropalert">
+  <div class="da-grid">
+    <div>
+      <div class="da-tag">⚡ Drop Alert — Free Tool</div>
+      <h2 class="da-title">Never Miss<br>a <span>Drop</span><br>Again</h2>
+      <p class="da-desc">Follow your artists on Buzzwire and we'll notify you before the official announcement — sometimes hours before the release hits streaming. 18,000+ fans already tracking drops.</p>
+      <div class="da-artists" id="artistList">
+        <div class="da-artist"><div class="da-avatar" style="background:rgba(255,230,0,.1);color:#FFE600">KL</div><div><div class="da-artist-name">Kendrick Lamar</div><div class="da-artist-next">Next: Untitled LP · Q2 2026</div></div></div>
+        <div class="da-artist"><div class="da-avatar" style="background:rgba(255,144,0,.1);color:#FF9000">SZ</div><div><div class="da-artist-name">SZA</div><div class="da-artist-next">Expected: LANA II · Q3 2026</div></div></div>
+        <div class="da-artist"><div class="da-avatar" style="background:rgba(255,45,85,.1);color:#FF2D55">DR</div><div><div class="da-artist-name">Drake</div><div class="da-artist-next">Tour: World Tour · Jun 2026</div></div></div>
+        <div class="da-artist"><div class="da-avatar" style="background:rgba(170,136,255,.1);color:#AA88FF">TS</div><div><div class="da-artist-name">Travis Scott</div><div class="da-artist-next">Tour: Utopia II · May 2026</div></div></div>
+        <div class="da-artist"><div class="da-avatar" style="background:rgba(0,204,255,.1);color:#00CCFF">OF</div><div><div class="da-artist-name">Offset</div><div class="da-artist-next">Single: Dropping Soon</div></div></div>
+        <div class="da-artist"><div class="da-avatar" style="background:rgba(57,255,20,.1);color:#39FF14">PW</div><div><div class="da-artist-name">Pharrell Williams</div><div class="da-artist-next">Collab: w/ Kendrick 2026</div></div></div>
+      </div>
+      <div class="da-form-label">Get alerts to your email</div>
+      <div class="da-input-wrap">
+        <input class="da-input" type="email" placeholder="your@email.com" id="dropEmail">
+        <button class="da-btn" id="dropBtn">Get Alerts →</button>
+      </div>
+      <p class="da-note">Free forever · No spam · Artists add weekly</p>
+    </div>
+    <div class="da-mockup">
+      <div class="da-mock-header">
+        <div class="da-mock-title">DROP RADAR</div>
+        <div class="da-mock-badge">Live Tracking</div>
+      </div>
+      <div class="da-mock-body">
+        <div class="da-mock-row live"><div style="flex:1"><div class="da-mock-artist">Kendrick Lamar</div><div class="da-mock-type">Untitled LP</div><div class="da-mock-date">Confirmed Q2 2026</div></div></div>
+        <div class="da-mock-row soon"><div style="flex:1"><div class="da-mock-artist">Drake</div><div class="da-mock-type">World Tour Presale</div><div class="da-mock-date">Drops in ~3 days</div></div></div>
+        <div class="da-mock-row soon"><div style="flex:1"><div class="da-mock-artist">Offset</div><div class="da-mock-type">Surprise Single</div><div class="da-mock-date">Expected this week</div></div></div>
+        <div class="da-mock-row upcoming"><div style="flex:1"><div class="da-mock-artist">Travis Scott</div><div class="da-mock-type">Utopia II Tour Dates</div><div class="da-mock-date">May 2026</div></div></div>
+        <div class="da-mock-row upcoming"><div style="flex:1"><div class="da-mock-artist">SZA</div><div class="da-mock-type">LANA II Album</div><div class="da-mock-date">Q3 2026</div></div></div>
+        <div class="da-notif"><div class="da-notif-icon">🔔</div><div class="da-notif-text"><strong>Last alert sent 2hrs ago:</strong> Offset confirmed new single in Instagram story — full breakdown in your inbox.</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ B-BOY & STREET DANCE ═══ -->
+<section class="bboy-section reveal" id="bboy">
+  <div class="sec-label spray-label">Element Three — Breaking & Street Dance</div>
+  <div class="bb-grid">
+    <div>
+      <div class="bb-title-block">
+        <div class="sec-h">Break<br><span class="n">Dancing</span><br><span class="dim">Never</span><br>Died</div>
+      </div>
+      <p class="bb-subtitle">From the parks of the South Bronx to Olympic gold — breaking is the athletic soul of hip-hop. B-boys and b-girls carry a tradition of cipher battles, power moves, and artistic expression that predates every streaming era.</p>
+
+      <!-- DANCE STYLES -->
+      <div style="font-size:8px;letter-spacing:.2em;color:var(--muted);text-transform:uppercase;margin-bottom:12px">Street Dance Disciplines</div>
+      <div class="bb-styles">
+        <div class="bb-style-chip bsc-bb">B-Boying</div>
+        <div class="bb-style-chip bsc-lk">Locking</div>
+        <div class="bb-style-chip bsc-pp">Popping</div>
+        <div class="bb-style-chip bsc-kr">Krump</div>
+        <div class="bb-style-chip bsc-wk">Waacking</div>
+        <div class="bb-style-chip bsc-vg">Voguing</div>
+        <div class="bb-style-chip bsc-hh">House Dance</div>
+        <div class="bb-style-chip bsc-bb">Toprock</div>
+        <div class="bb-style-chip bsc-lk">Footwork</div>
+      </div>
+
+      <div class="bb-cards">
+        <div class="bb-card">
+          <div class="bb-card-tag">Red Bull BC One · World Stage</div>
+          <div class="bb-card-title">B-Boy Taisuke Defends Title — US Athletes Qualify for Tokyo Final</div>
+          <div class="bb-card-meta">3 min · Breaking News</div>
+        </div>
+        <div class="bb-card">
+          <div class="bb-card-tag">Street Dance Culture · Feature</div>
+          <div class="bb-card-title">How Krump Turned Pain Into Power — A 20-Year Legacy Story</div>
+          <div class="bb-card-meta">8 min · Long Read</div>
+        </div>
+        <div class="bb-card">
+          <div class="bb-card-tag">Voguing · Ballroom Scene</div>
+          <div class="bb-card-title">The House of Revlon's New Chapter — and What It Means for the Culture</div>
+          <div class="bb-card-meta">5 min · Exclusive</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CIPHER CIRCLE VISUAL -->
+    <div class="bb-visual">
+      <div class="cipher-wrap">
+        <div class="cipher-outer">
+          <div class="cipher-crowd c1">BRONX</div>
+          <div class="cipher-crowd c2">QUEENS</div>
+          <div class="cipher-crowd c3">HARLEM</div>
+          <div class="cipher-crowd c4">BROOKLYN</div>
+        </div>
+        <div class="cipher-mid"></div>
+        <div class="cipher-inner"></div>
+        <div class="bboy-stage" id="bboy-stage">
+          <!-- POSE 1: TOPROCK -->
+          <div class="bboy-pose active" id="pose1">
+            <svg class="bp-svg" viewBox="0 0 100 140" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="50" cy="18" r="10" fill="#39FF14"/>
+              <line x1="50" y1="28" x2="50" y2="72" stroke="#39FF14" stroke-width="5" stroke-linecap="round"/>
+              <line x1="50" y1="44" x2="18" y2="35" stroke="#39FF14" stroke-width="5" stroke-linecap="round"/>
+              <line x1="50" y1="44" x2="82" y2="35" stroke="#39FF14" stroke-width="5" stroke-linecap="round"/>
+              <line x1="48" y1="72" x2="28" y2="108" stroke="#39FF14" stroke-width="5" stroke-linecap="round"/>
+              <line x1="52" y1="72" x2="70" y2="100" stroke="#39FF14" stroke-width="5" stroke-linecap="round"/>
+              <line x1="70" y1="100" x2="82" y2="118" stroke="#39FF14" stroke-width="4" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <!-- POSE 2: FREEZE / CHAIR -->
+          <div class="bboy-pose" id="pose2">
+            <svg class="bp-svg" viewBox="0 0 100 140" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="30" cy="40" r="10" fill="#FFE600"/>
+              <line x1="30" y1="50" x2="55" y2="80" stroke="#FFE600" stroke-width="5" stroke-linecap="round"/>
+              <line x1="38" y1="60" x2="18" y2="90" stroke="#FFE600" stroke-width="5" stroke-linecap="round"/>
+              <line x1="38" y1="60" x2="65" y2="55" stroke="#FFE600" stroke-width="5" stroke-linecap="round"/>
+              <line x1="55" y1="80" x2="30" y2="118" stroke="#FFE600" stroke-width="5" stroke-linecap="round"/>
+              <line x1="55" y1="80" x2="80" y2="100" stroke="#FFE600" stroke-width="5" stroke-linecap="round"/>
+              <line x1="18" y1="90" x2="8" y2="100" stroke="#FFE600" stroke-width="4" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <!-- POSE 3: WINDMILL (horizontal) -->
+          <div class="bboy-pose" id="pose3">
+            <svg class="bp-svg" viewBox="0 0 140 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="28" cy="50" r="10" fill="#FF2D55"/>
+              <line x1="38" y1="50" x2="80" y2="48" stroke="#FF2D55" stroke-width="5" stroke-linecap="round"/>
+              <line x1="55" y1="48" x2="45" y2="22" stroke="#FF2D55" stroke-width="5" stroke-linecap="round"/>
+              <line x1="55" y1="48" x2="60" y2="78" stroke="#FF2D55" stroke-width="5" stroke-linecap="round"/>
+              <line x1="80" y1="48" x2="112" y2="28" stroke="#FF2D55" stroke-width="5" stroke-linecap="round"/>
+              <line x1="80" y1="48" x2="118" y2="68" stroke="#FF2D55" stroke-width="5" stroke-linecap="round"/>
+              <line x1="38" y1="50" x2="18" y2="35" stroke="#FF2D55" stroke-width="4" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <!-- POSE 4: AIR FREEZE (one arm stand) -->
+          <div class="bboy-pose" id="pose4">
+            <svg class="bp-svg" viewBox="0 0 100 140" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="72" cy="100" r="10" fill="#9B59B6"/>
+              <line x1="72" y1="90" x2="65" y2="55" stroke="#9B59B6" stroke-width="5" stroke-linecap="round"/>
+              <line x1="67" y1="70" x2="40" y2="85" stroke="#9B59B6" stroke-width="5" stroke-linecap="round"/>
+              <line x1="40" y1="85" x2="22" y2="100" stroke="#9B59B6" stroke-width="4" stroke-linecap="round"/>
+              <line x1="67" y1="70" x2="88" y2="60" stroke="#9B59B6" stroke-width="5" stroke-linecap="round"/>
+              <line x1="65" y1="55" x2="38" y2="30" stroke="#9B59B6" stroke-width="5" stroke-linecap="round"/>
+              <line x1="65" y1="55" x2="90" y2="28" stroke="#9B59B6" stroke-width="5" stroke-linecap="round"/>
+            </svg>
+          </div>
+        </div>
+        <div class="cipher-text">CIPHER<br>CIRCLE</div>
+      </div>
+
+      <!-- POSE STRIP -->
+      <div class="bb-pose-strip">
+        <div class="bb-pose-item">
+          <svg class="bb-pose-svg" viewBox="0 0 40 56" fill="none"><circle cx="20" cy="7" r="4" fill="#39FF14"/><line x1="20" y1="11" x2="20" y2="29" stroke="#39FF14" stroke-width="2" stroke-linecap="round"/><line x1="20" y1="18" x2="8" y2="14" stroke="#39FF14" stroke-width="2" stroke-linecap="round"/><line x1="20" y1="18" x2="32" y2="14" stroke="#39FF14" stroke-width="2" stroke-linecap="round"/><line x1="19" y1="29" x2="11" y2="43" stroke="#39FF14" stroke-width="2" stroke-linecap="round"/><line x1="21" y1="29" x2="28" y2="40" stroke="#39FF14" stroke-width="2" stroke-linecap="round"/></svg>
+          <div class="bb-pose-label">Toprock</div>
+        </div>
+        <div class="bb-pose-item">
+          <svg class="bb-pose-svg" viewBox="0 0 40 56" fill="none"><circle cx="12" cy="16" r="4" fill="#FFE600"/><line x1="12" y1="20" x2="22" y2="32" stroke="#FFE600" stroke-width="2" stroke-linecap="round"/><line x1="15" y1="24" x2="7" y2="36" stroke="#FFE600" stroke-width="2" stroke-linecap="round"/><line x1="15" y1="24" x2="26" y2="22" stroke="#FFE600" stroke-width="2" stroke-linecap="round"/><line x1="22" y1="32" x2="12" y2="47" stroke="#FFE600" stroke-width="2" stroke-linecap="round"/><line x1="22" y1="32" x2="32" y2="40" stroke="#FFE600" stroke-width="2" stroke-linecap="round"/></svg>
+          <div class="bb-pose-label">Freeze</div>
+        </div>
+        <div class="bb-pose-item">
+          <svg class="bb-pose-svg" viewBox="0 0 56 40" fill="none"><circle cx="11" cy="20" r="4" fill="#FF2D55"/><line x1="15" y1="20" x2="32" y2="19" stroke="#FF2D55" stroke-width="2" stroke-linecap="round"/><line x1="22" y1="19" x2="18" y2="9" stroke="#FF2D55" stroke-width="2" stroke-linecap="round"/><line x1="22" y1="19" x2="24" y2="31" stroke="#FF2D55" stroke-width="2" stroke-linecap="round"/><line x1="32" y1="19" x2="45" y2="11" stroke="#FF2D55" stroke-width="2" stroke-linecap="round"/><line x1="32" y1="19" x2="47" y2="27" stroke="#FF2D55" stroke-width="2" stroke-linecap="round"/></svg>
+          <div class="bb-pose-label">Windmill</div>
+        </div>
+        <div class="bb-pose-item">
+          <svg class="bb-pose-svg" viewBox="0 0 40 56" fill="none"><circle cx="29" cy="40" r="4" fill="#9B59B6"/><line x1="29" y1="36" x2="26" y2="22" stroke="#9B59B6" stroke-width="2" stroke-linecap="round"/><line x1="27" y1="28" x2="16" y2="34" stroke="#9B59B6" stroke-width="2" stroke-linecap="round"/><line x1="27" y1="28" x2="35" y2="24" stroke="#9B59B6" stroke-width="2" stroke-linecap="round"/><line x1="26" y1="22" x2="15" y2="12" stroke="#9B59B6" stroke-width="2" stroke-linecap="round"/><line x1="26" y1="22" x2="36" y2="11" stroke="#9B59B6" stroke-width="2" stroke-linecap="round"/></svg>
+          <div class="bb-pose-label">Air Freeze</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ INDUSTRY MOVES ═══ -->
+<section class="industry-section reveal" id="industry">
+  <div class="sec-label spray-label">Power Plays — Industry Moves</div>
+  <div class="moves-header">
+    <div class="sec-h" style="margin-bottom:0">Label <span class="c">Moves</span><br><span class="dim">&</span> Power</div>
+    <div class="moves-ticker-row">
+      <div class="moves-ticker-live">Live Feed</div>
+      <span>Updated 1hr ago</span>
+    </div>
+  </div>
+
+  <div class="moves-grid">
+    <!-- SIGNING -->
+    <div class="move-card mt-sign">
+      <div class="move-type-strip">
+        <div class="move-type mt-sign">✦ Signing</div>
+        <div class="move-impact up">+HIGH IMPACT</div>
+      </div>
+      <div class="move-card-title">Aftermath Confirms Major New Signing — A&R Sources Leak Name</div>
+      <p class="move-desc">Dr. Dre's imprint has quietly inked the most talked-about unsigned artist of 2025. The deal structure, advance numbers, and creative control breakdown — from sources inside the label.</p>
+      <div class="move-names"><span class="move-name-tag">Aftermath</span><span class="move-name-tag">Dr. Dre</span><span class="move-name-tag">Undisclosed Artist</span></div>
+      <div class="move-card-meta"><span>2 hrs ago</span><span class="card-badge badge-excl">Exclusive</span></div>
+    </div>
+
+    <!-- BEEF -->
+    <div class="move-card mt-beef">
+      <div class="move-type-strip">
+        <div class="move-type mt-beef">⚔️ Beef</div>
+        <div class="move-impact down">ESCALATING</div>
+      </div>
+      <div class="move-card-title">The Label War Behind This Summer's Biggest Street Feud — Explained</div>
+      <p class="move-desc">What looks like an artist beef is really a proxy war between two major distribution deals. Follow the money, contracts, and publishing rights at the center of the conflict.</p>
+      <div class="move-names"><span class="move-name-tag">Distribution Deal</span><span class="move-name-tag">Publishing Rights</span></div>
+      <div class="move-card-meta"><span>4 hrs ago</span><span class="card-badge badge-hot">Breaking</span></div>
+    </div>
+
+    <!-- DEAL -->
+    <div class="move-card mt-deal">
+      <div class="move-type-strip">
+        <div class="move-type mt-deal">💰 Deal</div>
+        <div class="move-impact up">$180M</div>
+      </div>
+      <div class="move-card-title">Def Jam Sells Catalog Stake — What It Means for Hip-Hop Royalties</div>
+      <p class="move-desc">A landmark catalog acquisition reshapes who controls the financial backbone of classic hip-hop. Artists, heirs, and A&R veterans weigh in on what the deal changes for legacy artists.</p>
+      <div class="move-names"><span class="move-name-tag">Def Jam</span><span class="move-name-tag">Private Equity</span><span class="move-name-tag">Catalog</span></div>
+      <div class="move-card-meta"><span>Yesterday</span><span class="card-badge badge-trend">Analysis</span></div>
+    </div>
+
+    <!-- COLLAB -->
+    <div class="move-card mt-collab">
+      <div class="move-type-strip">
+        <div class="move-type mt-collab">🤝 Collab</div>
+        <div class="move-impact up">CONFIRMED</div>
+      </div>
+      <div class="move-card-title">Pharrell & Kendrick Project Now Officially Confirmed — Both Camps Break Silence</div>
+      <p class="move-desc">The collaboration that hip-hop has anticipated for two years is happening. Production credits, features, and the creative vision behind the pairing — direct from the studio.</p>
+      <div class="move-names"><span class="move-name-tag">Pharrell Williams</span><span class="move-name-tag">Kendrick Lamar</span><span class="move-name-tag">Pglong</span></div>
+      <div class="move-card-meta"><span>6 hrs ago</span><span class="card-badge badge-excl">Exclusive</span></div>
+    </div>
+
+    <!-- TOUR -->
+    <div class="move-card mt-tour">
+      <div class="move-type-strip">
+        <div class="move-type mt-tour">🚀 Tour</div>
+        <div class="move-impact up">40 CITIES</div>
+      </div>
+      <div class="move-card-title">Travis Scott's $40M Utopia II Tour Stage Specs — Every Detail Revealed</div>
+      <p class="move-desc">Insiders confirm the immersive 360° production plan. Staging specs, pyro budgets, and why this could be the most ambitious hip-hop production in history.</p>
+      <div class="move-names"><span class="move-name-tag">Travis Scott</span><span class="move-name-tag">Cactus Jack</span><span class="move-name-tag">Live Nation</span></div>
+      <div class="move-card-meta"><span>2 days ago</span><span class="card-badge badge-fire">Tour Alert</span></div>
+    </div>
+
+    <!-- AWARD -->
+    <div class="move-card mt-award">
+      <div class="move-type-strip">
+        <div class="move-type mt-award">🏆 Award</div>
+        <div class="move-impact up">HISTORIC</div>
+      </div>
+      <div class="move-card-title">Hip-Hop Wins First Pulitzer for Music Since Kendrick — and It's Not Who You Think</div>
+      <p class="move-desc">The cultural legitimization of hip-hop continues with a second Pulitzer Prize recognizing an artist from outside the mainstream spotlight. The full committee decision rationale.</p>
+      <div class="move-names"><span class="move-name-tag">Pulitzer Board</span><span class="move-name-tag">Independent Artist</span></div>
+      <div class="move-card-meta"><span>3 days ago</span><span class="card-badge badge-excl">Historic</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ STREAM TRUTH APP ═══ -->
+<section class="stream-truth reveal" id="streamtruth">
+  <div class="st-bg-word">TRUTH</div>
+  <div class="st-grid">
+    <div>
+      <div class="st-app-tag">⚡ Built-in App — Stream Truth</div>
+      <h2 class="st-title">Is That Song<br><span>Actually Hot</span><br>— or Bot?</h2>
+      <p class="st-desc">Paste any Spotify or Apple Music link. Our algorithm scores the probability of bot-driven streams vs. real listener engagement — in under 3 seconds. Used by artists, managers, and labels who want the truth.</p>
+      <div class="st-how">
+        <div class="st-step"><div class="st-step-n">01</div><div class="st-step-text"><strong>Paste any link</strong> — Spotify, Apple Music, YouTube or SoundCloud URL</div></div>
+        <div class="st-step"><div class="st-step-n">02</div><div class="st-step-text"><strong>We analyze 14 signals</strong> — listener geography, skip rate, playlist placement velocity, and more</div></div>
+        <div class="st-step"><div class="st-step-n">03</div><div class="st-step-text"><strong>Get your score</strong> — plain English verdict with flagged risk factors</div></div>
+      </div>
+      <a href="#" class="st-cta">Try Stream Truth Free →</a>
+    </div>
+    <div class="st-mock">
+      <div class="st-mock-bar">
+        <div class="sm-dot sm-r"></div><div class="sm-dot sm-y"></div><div class="sm-dot sm-g"></div>
+        <div class="st-mock-title">stream_truth_v2.app</div>
+      </div>
+      <div class="st-mock-body">
+        <div class="st-input-row"><span style="color:rgba(255,255,255,.5)">spotify.com/track/4cOdK2wGLETKBW3PvgPWqT</span><span class="st-input-arrow">→</span></div>
+        <div class="st-gauge">
+          <div class="st-gauge-fill"></div>
+          <div class="st-gauge-text"><div class="st-gauge-score">72%</div><div class="st-gauge-label">Real Engagement Score</div></div>
+        </div>
+        <div class="st-factors">
+          <div class="st-factor pass"><div class="st-factor-icon">✓</div><div class="st-factor-text"><span>Listener geography</span> — 34 countries, natural spread</div></div>
+          <div class="st-factor pass"><div class="st-factor-icon">✓</div><div class="st-factor-text"><span>Skip rate</span> — 18% below genre average</div></div>
+          <div class="st-factor warn"><div class="st-factor-icon">⚠</div><div class="st-factor-text"><span>Playlist velocity</span> — unusually fast editorial adds</div></div>
+          <div class="st-factor fail"><div class="st-factor-icon">✗</div><div class="st-factor-text"><span>Account age clusters</span> — suspicious listener spike Day 1</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ CYPHER / BATTLE RAP ═══ -->
+<section class="cypher-section reveal" id="battlerap">
+  <div class="sec-label spray-label">Element One — Battle Rap & The Cypher</div>
+  <div class="battle-grid">
+    <div class="battle-main">
+      <div class="battle-bg">VS</div>
+      <div class="battle-vs">VS.</div>
+      <div class="battle-a">
+        <div class="battle-a-tag">The Challenger</div>
+        <div class="battle-a-name">LOADED LUX</div>
+        <div class="battle-a-bar"></div>
+      </div>
+      <div class="battle-a">
+        <div class="battle-a-tag">The Champion</div>
+        <div class="battle-a-name">HOLLOW DA DON</div>
+        <div class="battle-a-bar" style="width:50%;background:var(--yellow)"></div>
+      </div>
+      <div class="battle-league"><span>League:</span> <strong>URL — Ultimate Rap League</strong> · MSG NYC</div>
+      <div class="battle-quote">
+        <div class="battle-quote-text">"In the cypher, there are no charts, no streams — just bars and the crowd's verdict."</div>
+        <div class="battle-quote-attr">— Battle Rap Doctrine, URL Archives</div>
+      </div>
+      <div class="card-meta" style="margin-top:0">
+        <span>Live Event · May 2026</span>
+        <span class="card-badge badge-hot">Most Anticipated</span>
+      </div>
+      <a href="#" class="read-link">Full Battle Breakdown</a>
+    </div>
+    <div>
+      <div class="battle-card-sm">
+        <div class="card-cat battle"><div class="cat-dot"></div>Battle Rap Economy</div>
+        <h3 class="card-title">URL Revenue Exceeds $12M in 2025 — Zero Streaming Dependency</h3>
+        <p class="card-excerpt">Pay-per-view, live events, and merchandise are rewriting what hip-hop economics can look like outside of major labels.</p>
+        <div class="card-meta"><span>6 min</span><span class="card-badge badge-new">Analysis</span></div>
+      </div>
+      <div class="battle-card-sm">
+        <div class="card-cat excl"><div class="cat-dot"></div>Freestyle Culture</div>
+        <h3 class="card-title">The Comeback of the Freestyle — How TikTok Turned Ciphers Into a Content Economy</h3>
+        <p class="card-excerpt">Underground cipher culture has found a new stage. The numbers, the creators, and the politics of going viral off bars.</p>
+        <div class="card-meta"><span>5 min</span><span class="card-badge badge-trend">Trending</span></div>
+      </div>
+      <div class="battle-card-sm">
+        <div class="card-cat battle"><div class="cat-dot"></div>Written Rap</div>
+        <h3 class="card-title">Pen Game vs. Performance — The Battle Rap Debate That Never Dies</h3>
+        <p class="card-excerpt">Bars on paper vs. delivery under pressure. We break down what truly separates battle rap from recorded music.</p>
+        <div class="card-meta"><span>4 min</span><span class="card-badge badge-excl">Opinion</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ ARTIST SPOTLIGHT ═══ -->
+<section class="spotlight reveal">
+  <div class="sec-label">Spotlight — Artists to Watch</div>
+  <div class="sec-h">WHO'S<br><span class="y">NEXT</span></div>
+  <div class="sp-scroll">
+    <div class="sp-card">
+      <div class="sp-img"><div class="sp-img-bg" style="background:linear-gradient(135deg,#1a0010,#3d0030);display:flex;align-items:center;justify-content:center;font-family:'Bebas Neue',cursive;font-size:56px;color:rgba(255,45,85,.3)">KL</div></div>
+      <div class="sp-new-badge">On Fire</div>
+      <div class="sp-body"><div class="sp-name">Kendrick Lamar</div><div class="sp-genre">Conscious Rap · West Coast</div><div class="sp-stats"><div class="sp-stat-s">Monthly: <strong>48M</strong></div><div class="sp-stat-s">Change: <strong>+22%</strong></div></div></div>
+    </div>
+    <div class="sp-card">
+      <div class="sp-img"><div class="sp-img-bg" style="background:linear-gradient(135deg,#0d1a00,#1a3300);display:flex;align-items:center;justify-content:center;font-family:'Bebas Neue',cursive;font-size:56px;color:rgba(57,255,20,.2)">GH</div></div>
+      <div class="sp-new-badge" style="background:var(--neon);color:#000">Rising</div>
+      <div class="sp-body"><div class="sp-name">GloRilla</div><div class="sp-genre">Memphis Rap · South</div><div class="sp-stats"><div class="sp-stat-s">Monthly: <strong>31M</strong></div><div class="sp-stat-s">Change: <strong>+40%</strong></div></div></div>
+    </div>
+    <div class="sp-card">
+      <div class="sp-img"><div class="sp-img-bg" style="background:linear-gradient(135deg,#00001a,#000d30);display:flex;align-items:center;justify-content:center;font-family:'Bebas Neue',cursive;font-size:56px;color:rgba(0,229,255,.2)">DR</div></div>
+      <div class="sp-body"><div class="sp-name">Drake</div><div class="sp-genre">Hip-Hop · Dancehall</div><div class="sp-stats"><div class="sp-stat-s">Monthly: <strong>72M</strong></div><div class="sp-stat-s">Change: <strong>+8%</strong></div></div></div>
+    </div>
+    <div class="sp-card">
+      <div class="sp-img"><div class="sp-img-bg" style="background:linear-gradient(135deg,#1a0900,#331200);display:flex;align-items:center;justify-content:center;font-family:'Bebas Neue',cursive;font-size:56px;color:rgba(255,107,0,.2)">SZ</div></div>
+      <div class="sp-new-badge" style="background:var(--fire)">Album Soon</div>
+      <div class="sp-body"><div class="sp-name">SZA</div><div class="sp-genre">R&B · Neo-Soul</div><div class="sp-stats"><div class="sp-stat-s">Monthly: <strong>55M</strong></div><div class="sp-stat-s">Change: <strong>+15%</strong></div></div></div>
+    </div>
+    <div class="sp-card">
+      <div class="sp-img"><div class="sp-img-bg" style="background:linear-gradient(135deg,#0a0014,#16002a);display:flex;align-items:center;justify-content:center;font-family:'Bebas Neue',cursive;font-size:56px;color:rgba(155,89,182,.3)">TS</div></div>
+      <div class="sp-body"><div class="sp-name">Travis Scott</div><div class="sp-genre">Psychedelic Trap</div><div class="sp-stats"><div class="sp-stat-s">Monthly: <strong>44M</strong></div><div class="sp-stat-s">Change: <strong>+12%</strong></div></div></div>
+    </div>
+    <div class="sp-card">
+      <div class="sp-img"><div class="sp-img-bg" style="background:linear-gradient(135deg,#001a10,#002a1a);display:flex;align-items:center;justify-content:center;font-family:'Bebas Neue',cursive;font-size:56px;color:rgba(57,255,20,.15)">BB</div></div>
+      <div class="sp-new-badge" style="background:var(--neon);color:#000">Breakout</div>
+      <div class="sp-body"><div class="sp-name">BigXthaPlug</div><div class="sp-genre">Dallas Rap · Street</div><div class="sp-stats"><div class="sp-stat-s">Monthly: <strong>18M</strong></div><div class="sp-stat-s">Change: <strong>+88%</strong></div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ R&B ═══ -->
+<section class="rnb-section reveal" id="rnb">
+  <!-- Vinyl visual -->
+  <div class="vinyl-wrap"><div class="vinyl"></div></div>
+
+  <div class="sec-label spray-label">Soul & Groove — R&B Now</div>
+  <div class="sec-h" style="position:relative;z-index:1">FEEL <span class="y">THE</span><br><span class="dim">SOUL</span></div>
+
+  <div class="rnb-grid">
+    <div class="rnb-card">
+      <div class="rnb-img"><div class="rnb-img-bg" style="background:linear-gradient(135deg,#1a0600,#2d1000);display:flex;align-items:center;justify-content:center;font-family:'Bebas Neue',cursive;font-size:40px;color:rgba(255,144,0,.25)">SZA</div><div class="rnb-play">▶</div></div>
+      <div class="rnb-eq"><div class="rnb-bar" style="height:70%"></div><div class="rnb-bar" style="height:40%"></div><div class="rnb-bar" style="height:90%"></div><div class="rnb-bar" style="height:55%"></div><div class="rnb-bar" style="height:75%"></div></div>
+      <div class="card-cat rnb"><div class="cat-dot"></div>R&B · Feature</div>
+      <h3 class="card-title">SZA LANA II: The Full Breakdown of What We Know</h3>
+      <p class="card-excerpt">Track titles, confirmed features, and the sonic palette — our editors break down every confirmed detail.</p>
+      <div class="card-meta"><span>7 min</span><span class="card-badge badge-hot">Hot</span></div>
+    </div>
+    <div class="rnb-card">
+      <div class="rnb-img"><div class="rnb-img-bg" style="background:linear-gradient(135deg,#00100a,#001a12);display:flex;align-items:center;justify-content:center;font-family:'Bebas Neue',cursive;font-size:40px;color:rgba(57,255,20,.15)">BYC</div><div class="rnb-play">▶</div></div>
+      <div class="rnb-eq"><div class="rnb-bar" style="height:50%"></div><div class="rnb-bar" style="height:80%"></div><div class="rnb-bar" style="height:30%"></div><div class="rnb-bar" style="height:95%"></div><div class="rnb-bar" style="height:60%"></div></div>
+      <div class="card-cat rnb"><div class="cat-dot"></div>Neo-Soul · Feature</div>
+      <h3 class="card-title">Beyoncé's Country-to-R&B Pivot and What It Proves About Genre</h3>
+      <p class="card-excerpt">The artist who defined R&B for a generation refuses every category. What her evolution tells us about genre's death.</p>
+      <div class="card-meta"><span>5 min</span><span class="card-badge badge-trend">Trending</span></div>
+    </div>
+    <div class="rnb-card">
+      <div class="rnb-img"><div class="rnb-img-bg" style="background:linear-gradient(135deg,#0d0018,#1a0030);display:flex;align-items:center;justify-content:center;font-family:'Bebas Neue',cursive;font-size:40px;color:rgba(155,89,182,.2)">FUT</div><div class="rnb-play">▶</div></div>
+      <div class="rnb-eq"><div class="rnb-bar" style="height:85%"></div><div class="rnb-bar" style="height:45%"></div><div class="rnb-bar" style="height:70%"></div><div class="rnb-bar" style="height:35%"></div><div class="rnb-bar" style="height:90%"></div></div>
+      <div class="card-cat rnb"><div class="cat-dot"></div>Trap Soul · Analysis</div>
+      <h3 class="card-title">Future's New Sound — The Quiet Pivot from Trap to Orchestral Vibes</h3>
+      <p class="card-excerpt">A deep dive into Future's shifting sonic palette and why his most recent sessions have producers talking.</p>
+      <div class="card-meta"><span>6 min</span><span class="card-badge badge-new">New</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ CULTURE CHART ═══ -->
+<section class="culture-chart reveal" id="chart">
+  <div class="sec-label spray-label">Culture Chart — This Week's Rankings</div>
+  <div class="sec-h">WHAT'S<br><span class="y">MOVING</span></div>
+  <div class="cc-grid">
+    <div class="cc-list">
+      <div class="cc-item">
+        <div class="cc-rank top">01</div>
+        <div class="cc-info"><div class="cc-ttl">Kendrick Lamar — Untitled LP Hype</div><div class="cc-meta-row"><span>Hip-Hop · Anticipation Chart</span><span>·</span><span>Billboard Buzz</span></div></div>
+        <div class="cc-chg chg-new">NEW ↑</div>
+      </div>
+      <div class="cc-item">
+        <div class="cc-rank top">02</div>
+        <div class="cc-info"><div class="cc-ttl">URL Battle Rap — MSG NYC</div><div class="cc-meta-row"><span>Battle Rap · Event Chart</span><span>·</span><span>PPV Sales</span></div></div>
+        <div class="cc-chg chg-up">▲ 3</div>
+      </div>
+      <div class="cc-item">
+        <div class="cc-rank top">03</div>
+        <div class="cc-info"><div class="cc-ttl">BC One — Red Bull Breaking Worlds</div><div class="cc-meta-row"><span>B-Boy Culture · Event</span><span>·</span><span>Cultural Impact</span></div></div>
+        <div class="cc-chg chg-up">▲ 1</div>
+      </div>
+      <div class="cc-item">
+        <div class="cc-rank mid">04</div>
+        <div class="cc-info"><div class="cc-ttl">SZA — LANA II Rollout Energy</div><div class="cc-meta-row"><span>R&B · Streaming</span><span>·</span><span>Social Buzz</span></div></div>
+        <div class="cc-chg chg-up">▲ 2</div>
+      </div>
+      <div class="cc-item">
+        <div class="cc-rank mid">05</div>
+        <div class="cc-info"><div class="cc-ttl">KAWS × MoMA Retrospective</div><div class="cc-meta-row"><span>Graffiti Art · Cultural</span><span>·</span><span>Press Coverage</span></div></div>
+        <div class="cc-chg chg-new">NEW ↑</div>
+      </div>
+      <div class="cc-item">
+        <div class="cc-rank mid">06</div>
+        <div class="cc-info"><div class="cc-ttl">Drake World Tour — Presale Rush</div><div class="cc-meta-row"><span>Hip-Hop · Live Events</span><span>·</span><span>Ticket Sales</span></div></div>
+        <div class="cc-chg chg-down">▼ 1</div>
+      </div>
+      <div class="cc-item">
+        <div class="cc-rank low">07</div>
+        <div class="cc-info"><div class="cc-ttl">Waacking Scene — NYC Summer Stage</div><div class="cc-meta-row"><span>Street Dance · Community</span><span>·</span><span>Attendance</span></div></div>
+        <div class="cc-chg chg-up">▲ 5</div>
+      </div>
+      <div class="cc-item">
+        <div class="cc-rank low">08</div>
+        <div class="cc-info"><div class="cc-ttl">Pharrell x Kendrick — Collab Confirmed</div><div class="cc-meta-row"><span>Hip-Hop · Industry</span><span>·</span><span>Social Momentum</span></div></div>
+        <div class="cc-chg chg-up">▲ 7</div>
+      </div>
+    </div>
+    <div class="cc-sidebar">
+      <div class="cc-sb-title">POLL OF THE WEEK</div>
+      <div class="cc-poll">
+        <div class="cc-poll-q">Who wins the Summer of 2026 — musically and culturally?</div>
+        <div class="cc-opt" id="poll1" onclick="vote(this,62)">
+          <div class="cc-opt-fill" style="width:0%"></div>
+          <span class="cc-opt-text">Kendrick Lamar</span>
+          <span class="cc-opt-pct">—</span>
+        </div>
+        <div class="cc-opt" id="poll2" onclick="vote(this,18)">
+          <div class="cc-opt-fill" style="width:0%"></div>
+          <span class="cc-opt-text">Drake</span>
+          <span class="cc-opt-pct">—</span>
+        </div>
+        <div class="cc-opt" id="poll3" onclick="vote(this,12)">
+          <div class="cc-opt-fill" style="width:0%"></div>
+          <span class="cc-opt-text">SZA</span>
+          <span class="cc-opt-pct">—</span>
+        </div>
+        <div class="cc-opt" id="poll4" onclick="vote(this,8)">
+          <div class="cc-opt-fill" style="width:0%"></div>
+          <span class="cc-opt-text">Travis Scott</span>
+          <span class="cc-opt-pct">—</span>
+        </div>
+        <div class="cc-voted" id="pollVoted" style="display:none">✓ Your vote is counted</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ HOOK TESTER ═══ -->
+<section class="hook-section reveal">
+  <div class="hook-grid">
+    <div>
+      <div class="sec-label">Built-in Tool — Hook Analyzer</div>
+      <div class="sec-h">Is Your<br><span class="y">Hook</span><br><span class="dim">Hard</span><br>Enough?</div>
+      <p style="font-size:11px;color:var(--muted);line-height:1.8;max-width:440px">Type any rap bar, hook, or hook concept. Our language model scores it across 6 cultural factors: memorability, cadence match, uniqueness, cultural resonance, replay value, and street credibility.</p>
+    </div>
+    <div class="hook-tool">
+      <div class="hook-bar">
+        <div class="sm-dot sm-r"></div><div class="sm-dot sm-y"></div><div class="sm-dot sm-g"></div>
+        <div class="hook-bar-title">hook_analyzer_v3.buzzwire</div>
+      </div>
+      <div class="hook-body">
+        <div class="hook-inp-wrap">
+          <textarea class="hook-inp" placeholder="Drop your bars here... 'We don't talk anymore...'" id="hookInput"></textarea>
+        </div>
+        <button class="hook-analyze" id="hookBtn">Analyze Hook →</button>
+        <div class="hook-result">
+          <div class="hook-score-row">
+            <div class="hook-score-num" id="hookScore">87</div>
+            <div class="hook-score-info">
+              <div class="hook-score-label">Hook Score</div>
+              <div class="hook-score-sub">Strong cultural resonance · High replay value · Certified banger potential</div>
+            </div>
+          </div>
+          <div class="hook-meter"><div class="hook-meter-fill"></div></div>
+          <div class="hook-factors">
+            <span class="hf-tag hf-pass">Memorability ✓</span>
+            <span class="hf-tag hf-pass">Cadence ✓</span>
+            <span class="hf-tag hf-pass">Street Cred ✓</span>
+            <span class="hf-tag hf-partial">Uniqueness ~</span>
+            <span class="hf-tag hf-pass">Replay Value ✓</span>
+            <span class="hf-tag hf-partial">Cultural Ref ~</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ GRAFFITI WALL ═══ -->
+<section class="graf-wall reveal" id="graffiti">
+  <div class="graf-bg-letters">WRITE THE WALLS · THE STREETS SPEAK</div>
+  <div class="graf-inner">
+    <div class="graf-quote-block">
+      <div class="sec-label spray-label">Element Four — Graffiti & Visual Art</div>
+      <div class="graf-tag">WRITE<br>THE<br>WALLS</div>
+      <div class="graf-quote">"Before there were hot takes, there were throw-ups on the 2 Train. The wall has always been the platform."</div>
+      <div class="graf-attr">— Cornbread, First Known Graffiti Writer · Philadelphia · 1967</div>
+    </div>
+    <div class="graf-cards">
+      <div class="graf-card">
+        <div class="graf-card-cat">Graffiti Art · Museum</div>
+        <div class="graf-card-title">KAWS Gets MoMA Retrospective — What It Means When Street Art Goes Institutional</div>
+        <div class="graf-card-meta">6 min · Long Read · Cultural Analysis</div>
+      </div>
+      <div class="graf-card">
+        <div class="graf-card-cat">Visual Culture · Feature</div>
+        <div class="graf-card-title">The Writers Who Never Sold Out — 5 Graffiti Legends Still Bombing Walls in 2026</div>
+        <div class="graf-card-meta">8 min · Profiles</div>
+      </div>
+      <div class="graf-card">
+        <div class="graf-card-cat">Graffiti History · Origin Story</div>
+        <div class="graf-card-title">From the South Bronx to the Louvre — How Hip-Hop's Visual Language Conquered Fine Art</div>
+        <div class="graf-card-meta">10 min · History · Archive</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ NEWSLETTER ═══ -->
+<section class="nl-section reveal">
+  <div class="nl-inner">
+    <div class="nl-kicker">Buzzwire Daily Newsletter</div>
+    <h2 class="nl-title">STAY <span>PLUGGED</span><br>IN</h2>
+    <p class="nl-desc">Every morning. Hip-hop drops, industry moves, b-boy battle results, R&B heat, street art stories — delivered before you even hit play.</p>
+    <div class="nl-perks">
+      <div class="nl-perk">Drop alerts before they drop</div>
+      <div class="nl-perk">Battle rap scorecards</div>
+      <div class="nl-perk">Industry move breakdowns</div>
+      <div class="nl-perk">Cipher culture coverage</div>
+    </div>
+    <div class="nl-form">
+      <input class="nl-input" type="email" placeholder="your@email.com">
+      <button class="nl-btn">Subscribe →</button>
+    </div>
+    <p class="nl-note">Free · No spam · Unsubscribe anytime · 22,000+ subscribers</p>
+    <div class="nl-social-proof">
+      <div class="nl-avatars">
+        <div class="nl-av">🎤</div><div class="nl-av">🕺</div><div class="nl-av">🎧</div><div class="nl-av">✍️</div>
+      </div>
+      <span>22,000+ readers in the hip-hop community</span>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ FOOTER ═══ -->
+<footer class="page-footer">
+  <div class="ft-top">
+    <div>
+      <div class="ft-logo">Buzz<span>Wire</span> Daily</div>
+      <div class="ft-tagline" style="margin-top:4px">Section 01 of 7 — Urban Culture · Hip-Hop · The Streets</div>
+    </div>
+    <div class="ft-links">
+      <a href="#">All Sections</a><a href="#">Apps</a><a href="#">Newsletter</a><a href="#">About</a><a href="#">Advertise</a>
+    </div>
+  </div>
+  <div class="ft-bottom">
+    <span>© 2026 Buzzwire Daily · Powered by OpenWork · Hip-Hop never dies</span>
+    <div class="ft-social">
+      <a href="#">TikTok</a><a href="#">X</a><a href="#">Instagram</a><a href="#">YouTube</a>
+    </div>
+  </div>
+</footer>
+
+</div><!-- /main -->
+
+<!-- FLOATING SHARE BAR -->
+<div class="share-bar">
+  <div class="share-btn">X</div>
+  <div class="share-btn">IG</div>
+  <div class="share-btn">TK</div>
+  <div class="share-btn">WA</div>
+  <div class="share-btn">CP</div>
+</div>
+
+<script>
+/* ═══════════════ CURSOR ═══════════════ */
+const cur=document.getElementById('cur'),ring=document.getElementById('cur-r');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',e=>{
+  mx=e.clientX;my=e.clientY;
+  cur.style.left=(mx-5)+'px';cur.style.top=(my-5)+'px';
+});
+(function anim(){
+  rx+=(mx-rx)*.12;ry+=(my-ry)*.12;
+  ring.style.left=(rx-18)+'px';ring.style.top=(ry-18)+'px';
+  requestAnimationFrame(anim);
+})();
+const hov=document.querySelectorAll('a,button,.card-hero,.card-std,.battle-main,.battle-card-sm,.rnb-card,.sp-card,.cc-item,.da-artist,.cc-opt,.vn-link,.share-btn,.bb-card,.move-card,.bb-style-chip,.bb-pose-item,.graf-card');
+hov.forEach(el=>{
+  el.addEventListener('mouseenter',()=>document.body.classList.add('hovered'));
+  el.addEventListener('mouseleave',()=>document.body.classList.remove('hovered'));
+});
+
+/* ═══════════════ HERO CANVAS ═══════════════ */
+(function(){
+  const canvas=document.getElementById('heroCanvas');
+  const ctx=canvas.getContext('2d');
+  function resize(){canvas.width=canvas.offsetWidth;canvas.height=canvas.offsetHeight}
+  resize();window.addEventListener('resize',resize);
+  const NUM=100;
+  const particles=Array.from({length:NUM},()=>({
+    x:Math.random()*canvas.width,y:Math.random()*canvas.height,
+    r:Math.random()*.8+.3,vx:(Math.random()-.5)*.15,vy:(Math.random()-.5)*.1,a:Math.random()*.5+.1
+  }));
+  let mmx=canvas.width/2,mmy=canvas.height/2;
+  document.addEventListener('mousemove',e=>{const rect=canvas.getBoundingClientRect();mmx=e.clientX-rect.left;mmy=e.clientY-rect.top;});
+  let t=0;
+  function draw(){
+    requestAnimationFrame(draw);ctx.clearRect(0,0,canvas.width,canvas.height);t+=.012;
+    const grd=ctx.createRadialGradient(canvas.width*.7,canvas.height*.4,0,canvas.width*.7,canvas.height*.4,canvas.width*.4);
+    grd.addColorStop(0,'rgba(155,89,182,.03)');grd.addColorStop(1,'transparent');
+    ctx.fillStyle=grd;ctx.fillRect(0,0,canvas.width,canvas.height);
+    const grd2=ctx.createRadialGradient(mmx,mmy,0,mmx,mmy,200);
+    grd2.addColorStop(0,'rgba(204,0,0,.04)');grd2.addColorStop(1,'transparent');
+    ctx.fillStyle=grd2;ctx.fillRect(0,0,canvas.width,canvas.height);
+    ctx.beginPath();
+    for(let x=0;x<canvas.width;x+=2){
+      const freq=Math.sin(x*.012+t)*Math.cos(x*.008+t*.7)*.5+.5;
+      const y=canvas.height*.62+Math.sin(x*.018+t*1.2)*18*freq+Math.cos(x*.025+t*.8)*10*freq;
+      x===0?ctx.moveTo(x,y):ctx.lineTo(x,y);
+    }
+    ctx.strokeStyle='rgba(255,230,0,.07)';ctx.lineWidth=1;ctx.stroke();
+    ctx.beginPath();
+    for(let x=0;x<canvas.width;x+=2){
+      const y=canvas.height*.65+Math.sin(x*.022+t*.9)*12+Math.cos(x*.015+t*1.1)*8;
+      x===0?ctx.moveTo(x,y):ctx.lineTo(x,y);
+    }
+    ctx.strokeStyle='rgba(57,255,20,.04)';ctx.lineWidth=1;ctx.stroke();
+    particles.forEach(p=>{
+      p.x+=p.vx;p.y+=p.vy;
+      if(p.x<0)p.x=canvas.width;if(p.x>canvas.width)p.x=0;
+      if(p.y<0)p.y=canvas.height;if(p.y>canvas.height)p.y=0;
+      ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+      ctx.fillStyle=`rgba(255,255,255,${p.a*.4})`;ctx.fill();
+    });
+    for(let i=0;i<particles.length;i++){
+      for(let j=i+1;j<particles.length;j++){
+        const dx=particles[i].x-particles[j].x,dy=particles[i].y-particles[j].y;
+        const d=Math.sqrt(dx*dx+dy*dy);
+        if(d<80){ctx.beginPath();ctx.moveTo(particles[i].x,particles[i].y);ctx.lineTo(particles[j].x,particles[j].y);ctx.strokeStyle=`rgba(255,230,0,${(1-d/80)*.035})`;ctx.lineWidth=.5;ctx.stroke();}
+      }
+    }
+  }
+  draw();
+})();
+
+/* ═══════════════ FREQUENCY BARS ═══════════════ */
+document.querySelectorAll('.fb,.rnb-bar').forEach(b=>{b.style.animationDuration=(0.4+Math.random()*.9)+'s'});
+
+/* ═══════════════ B-BOY POSE CYCLE ═══════════════ */
+const poses=document.querySelectorAll('.bboy-pose');
+let currentPose=0;
+function cyclePose(){
+  poses[currentPose].classList.remove('active');
+  currentPose=(currentPose+1)%poses.length;
+  poses[currentPose].classList.add('active');
+}
+setInterval(cyclePose,1800);
+
+/* ═══════════════ SCROLL REVEAL ═══════════════ */
+const io=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('on');io.unobserve(e.target);}});
+},{threshold:.07});
+document.querySelectorAll('.reveal,.reveal-left,.reveal-right').forEach(el=>io.observe(el));
+
+/* ═══════════════ ARTIST FOLLOW ═══════════════ */
+document.querySelectorAll('.da-artist').forEach(el=>{
+  el.addEventListener('click',()=>{
+    el.classList.toggle('following');
+    const name=el.querySelector('.da-artist-name').textContent;
+    if(el.classList.contains('following')){showToast(`Following ${name} — drop alerts activated ✓`);}
+  });
+});
+
+/* ═══════════════ DROP ALERT FORM ═══════════════ */
+document.getElementById('dropBtn').addEventListener('click',()=>{
+  const val=document.getElementById('dropEmail').value;
+  if(val.includes('@')){
+    showToast('🔔 Drop alerts activated — check your inbox');
+    document.getElementById('dropEmail').value='';
+  } else {
+    document.getElementById('dropEmail').style.borderColor='rgba(255,45,85,.5)';
+    setTimeout(()=>document.getElementById('dropEmail').style.borderColor='',1500);
+  }
+});
+
+/* ═══════════════ POLL ═══════════════ */
+let voted=false;
+function vote(el,pct){
+  if(voted)return;voted=true;
+  const percents={poll1:62,poll2:18,poll3:12,poll4:8};
+  document.querySelectorAll('.cc-opt').forEach(opt=>{
+    const p=percents[opt.id]||0;
+    opt.querySelector('.cc-opt-fill').style.width=p+'%';
+    opt.querySelector('.cc-opt-pct').textContent=p+'%';
+    opt.style.cursor='default';
+  });
+  el.style.borderColor='rgba(255,230,0,.4)';
+  document.getElementById('pollVoted').style.display='block';
+}
+
+/* ═══════════════ HOOK TESTER ═══════════════ */
+document.getElementById('hookBtn').addEventListener('click',()=>{
+  const inp=document.getElementById('hookInput').value.trim();
+  if(!inp)return;
+  const score=Math.floor(60+Math.random()*38);
+  document.getElementById('hookScore').textContent=score;
+  const fill=document.querySelector('.hook-meter-fill');
+  fill.style.width='0%';
+  setTimeout(()=>{fill.style.width=score+'%'},100);
+  showToast(`Hook analyzed — score: ${score}/100`);
+});
+
+/* ═══════════════ TOAST ═══════════════ */
+function showToast(msg){
+  const t=document.createElement('div');
+  t.style.cssText='position:fixed;bottom:28px;left:50%;transform:translateX(-50%) translateY(20px);background:#FFE600;color:#000;padding:10px 22px;font-family:"DM Mono",monospace;font-size:10px;letter-spacing:.12em;z-index:9000;opacity:0;transition:all .3s;pointer-events:none;white-space:nowrap';
+  t.textContent=msg;document.body.appendChild(t);
+  requestAnimationFrame(()=>requestAnimationFrame(()=>{t.style.opacity='1';t.style.transform='translateX(-50%) translateY(0)'}));
+  setTimeout(()=>{t.style.opacity='0';t.style.transform='translateX(-50%) translateY(20px)';setTimeout(()=>t.remove(),300)},3000);
+}
+
+/* ═══════════════ SHARE BAR ═══════════════ */
+document.querySelectorAll('.share-btn').forEach(b=>{
+  b.addEventListener('click',()=>showToast('Link copied to clipboard ✓'));
+});
+
+/* ═══════════════ B-BOY STYLE CHIPS ═══════════════ */
+document.querySelectorAll('.bb-style-chip').forEach(chip=>{
+  chip.addEventListener('click',()=>showToast(`Exploring ${chip.textContent} culture →`));
+});
+
+/* ═══════════════ NAV SCROLL ACTIVE ═══════════════ */
+const sections=['news','dropalert','bboy','industry','streamtruth','battlerap','rnb'];
+const navLinks=document.querySelectorAll('.vn-link');
+window.addEventListener('scroll',()=>{
+  let cur2=0;
+  sections.forEach((id,i)=>{const el=document.getElementById(id);if(el&&window.scrollY>=el.offsetTop-180)cur2=i});
+  navLinks.forEach((l,i)=>{if(i>0)l.classList.remove('on')});
+  if(navLinks[cur2])navLinks[cur2].classList.add('on');
+},{passive:true});
+</script>
+</body>
+</html>

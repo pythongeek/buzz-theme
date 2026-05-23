@@ -9,7 +9,7 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
-$creator_posts = buzz_get_posts_by_section('creators', 4);
+$creator_posts = buzz_get_posts_by_section('influencer', 4);
 ?>
 
 <!-- ═══ 4. INFLUENCERS ═══ -->

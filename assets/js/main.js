@@ -193,7 +193,7 @@
         const observer = new IntersectionObserver(function(entries) {
             entries.forEach(function(entry) {
                 if (entry.isIntersecting) {
-                    entry.target.classList.add('bw-on');
+                    entry.target.classList.add('bw-visible');
                 }
             });
         }, {
