@@ -470,6 +470,19 @@ function buzz_body_classes($classes) {
 add_filter('body_class', 'buzz_body_classes');
 
 /**
+ * Get posts by section/category
+ */
+function buzz_get_posts_by_section($section, $count = 5) {
+    return new WP_Query(array(
+        'category_name'  => $section,
+        'posts_per_page' => $count,
+        'post_status'    => 'publish',
+        'orderby'        => 'date',
+        'order'          => 'DESC',
+    ));
+}
+
+/**
  * Custom template tags
  */
 function buzz_posted_on() {
