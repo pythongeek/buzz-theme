@@ -12,53 +12,123 @@ if (!defined('ABSPATH')) {
 get_header();
 ?>
 
-<!-- Hero Section -->
-<section class="bw-hero">
-    <canvas id="bw-hero-canvas"></canvas>
-    <div class="bw-hero-eyebrow">
-        Signal Active — <?php echo date('M d Y'); ?>
+<!-- Breaking News Ticker -->
+<div class="bw-ticker-wrap">
+    <div class="bw-ticker">
+        <span class="bw-ticker-live">🔴 LIVE</span>
+        <span class="bw-ticker-item">Kendrick Lamar drops surprise album — stream now</span>
+        <span class="bw-ticker-dot">•</span>
+        <span class="bw-ticker-item">Netflix raises prices again — here's what you pay</span>
+        <span class="bw-ticker-dot">•</span>
+        <span class="bw-ticker-item">New AI tool creates viral TikToks in 30 seconds</span>
+        <span class="bw-ticker-dot">•</span>
+        <span class="bw-ticker-item">Bitcoin hits $72K — what's driving the surge?</span>
+        <span class="bw-ticker-dot">•</span>
+        <span class="bw-ticker-item">"The Summer I Turned Pretty" S3 confirmed</span>
+        <span class="bw-ticker-dot">•</span>
+        <span class="bw-ticker-item">Travis Scott x Nike collab drops tomorrow</span>
+        <span class="bw-ticker-dot">•</span>
+        <span class="bw-ticker-item">TikTok algorithm change — creators panic</span>
+        <span class="bw-ticker-dot">•</span>
+        <span class="bw-ticker-item">Marvel's new series leaks — first look</span>
     </div>
-    <h1 class="bw-hero-title">
-        <span class="bw-outline">VOID</span><br>
-        <span class="bw-red">SIGNAL</span><br>
-        DAILY
-    </h1>
-    <div class="bw-hero-bottom">
-        <p class="bw-hero-desc">
-            Hip-hop. AI. Crypto. Streaming. Virality.<br>
-            Built for the generation that doesn't wait for tomorrow.
-        </p>
-        <a href="<?php echo esc_url(home_url('/')); ?>" class="bw-hero-btn">Enter the Wire →</a>
-    </div>
-    <div class="bw-hero-scroll">
-        <div class="bw-scroll-line"></div>
-        SCROLL
-    </div>
-</section>
+</div>
 
-<!-- Ticker -->
-<div class="bw-ticker">
-    <div class="bw-ticker-wrap" id="bw-ticker">
-        <?php
-        // Static ticker items for now - these can be dynamic later
-        $ticker_items = array(
-            'Kendrick Lamar confirms Q2 LP',
-            'GPT-5 passes Turing benchmark',
-            'Netflix Q1 beats estimates +$800M',
-            'BTC ETF inflows $4.2B single day',
-            'Drake 60-city world tour confirmed',
-            'TikTok algo wipes 40% creator reach',
-            '$AGNT token +380% in 48 hours',
-            'Peaky Blinders film begins production',
-        );
+<!-- Category Quick Nav -->
+<div class="bw-categories">
+    <a href="/hiphop" class="bw-cat-badge hiphop">🎤 Hip-Hop</a>
+    <a href="/movies-tv" class="bw-cat-badge movies">🎬 Movies</a>
+    <a href="/streaming" class="bw-cat-badge streaming">📺 Streaming</a>
+    <a href="/creators" class="bw-cat-badge influencers">🌟 Creators</a>
+    <a href="/ai-lab" class="bw-cat-badge ai">🤖 AI Lab</a>
+    <a href="/crypto" class="bw-cat-badge crypto">₿ Crypto</a>
+    <a href="/viral" class="bw-cat-badge viral">📱 Viral</a>
+</div>
+
+<!-- Main Hero Grid -->
+<div class="bw-hero-grid">
+    
+    <!-- Featured Story (Large) -->
+    <article class="bw-hero-featured">
+        <div class="bw-hero-img-wrap">
+            <img src="https://images.unsplash.com/photo-1493225255756-d9584f8606e9?w=1200&h=675&fit=crop" 
+                 alt="Kendrick Lamar performing" 
+                 class="bw-hero-img"
+                 loading="eager">
+            <div class="bw-hero-gradient"></div>
+        </div>
+        <div class="bw-hero-content">
+            <div class="bw-hero-meta">
+                <span class="bw-cat-tag hiphop">🎤 Hip-Hop</span>
+                <span class="bw-hero-exclusive">EXCLUSIVE</span>
+            </div>
+            <h1 class="bw-hero-title">
+                Kendrick Lamar's Surprise Drop Shatters Streaming Records in 4 Hours
+            </h1>
+            <p class="bw-hero-excerpt">
+                The untitled project racked up 50M streams overnight, sparking debate about bot-driven numbers vs. organic fan power. We break down the data.
+            </p>
+            <div class="bw-hero-footer">
+                <span class="bw-author">By J. Cole</span>
+                <span class="bw-dot">•</span>
+                <span class="bw-time">12 min ago</span>
+                <span class="bw-dot">•</span>
+                <span class="bw-read-time">4 min read</span>
+            </div>
+            <div class="bw-hero-actions">
+                <a href="#" class="bw-btn-primary">Read Full Story →</a>
+                <button class="bw-btn-share" onclick="shareStory('kendrick-surprise-drop')">↗ Share</button>
+            </div>
+        </div>
+    </article>
+
+    <!-- Side Cards (2 stacked) -->
+    <div class="bw-hero-side">
         
-        // Duplicate for seamless loop
-        $all_items = array_merge($ticker_items, $ticker_items);
-        
-        foreach ($all_items as $item) :
-        ?>
-            <span class="bw-ticker-item"><?php echo esc_html($item); ?></span>
-        <?php endforeach; ?>
+        <article class="bw-side-card">
+            <div class="bw-side-img-wrap">
+                <img src="https://images.unsplash.com/photo-1536440136628-849c177e76a1?w=400&h=300&fit=crop" 
+                     alt="Movie scene" 
+                     class="bw-side-img"
+                     loading="lazy">
+                <span class="bw-side-cat movies">🎬 Movies</span>
+            </div>
+            <h3 class="bw-side-title">Netflix's Secret Weapon: The Anime Strategy No One Saw Coming</h3>
+            <div class="bw-side-footer">
+                <span>2 hr ago</span>
+                <span>• 6 min read</span>
+            </div>
+        </article>
+
+        <article class="bw-side-card">
+            <div class="bw-side-img-wrap">
+                <img src="https://images.unsplash.com/photo-1639762681485-074b7f938ba0?w=400&h=300&fit=crop" 
+                     alt="Crypto chart" 
+                     class="bw-side-img"
+                     loading="lazy">
+                <span class="bw-side-cat crypto">₿ Crypto</span>
+            </div>
+            <h3 class="bw-side-title">This AI Token Went 40x in 3 Days — Here's the Red Flags</h3>
+            <div class="bw-side-footer">
+                <span>4 hr ago</span>
+                <span>• 8 min read</span>
+            </div>
+        </article>
+
+    </div>
+</div>
+
+<!-- App CTA Band -->
+<div class="bw-app-band">
+    <div class="bw-app-band-inner">
+        <div class="bw-app-info">
+            <span class="bw-app-icon">🔥</span>
+            <div>
+                <strong>Hook Tester</strong>
+                <span>Will your caption go viral? Test it free →</span>
+            </div>
+        </div>
+        <a href="/apps/hook-tester" class="bw-app-btn">Try It Now</a>
     </div>
 </div>
 
