@@ -172,15 +172,15 @@ function buzz_scripts() {
 
     // Enqueue compiled JS from Node.js build
     wp_enqueue_script(
-        'buzz-main-js',
-        BUZZ_THEME_URI . '/assets/js/main.js',
+        'buzz-homepage-js',
+        BUZZ_THEME_URI . '/assets/js/buzzwire.js',
         array('jquery', 'buzz-three-js'),
         BUZZ_THEME_VERSION,
         true
     );
 
     // Pass PHP data to JavaScript
-    wp_localize_script('buzz-main-js', 'buzzData', array(
+    wp_localize_script('buzz-homepage-js', 'buzzData', array(
         'ajaxUrl'   => admin_url('admin-ajax.php'),
         'homeUrl'   => home_url('/'),
         'themeUri'  => BUZZ_THEME_URI,
@@ -581,3 +581,4 @@ if (defined('JETPACK__VERSION')) {
 if (class_exists('WooCommerce')) {
     require BUZZ_THEME_DIR . '/inc/woocommerce.php';
 }
+
