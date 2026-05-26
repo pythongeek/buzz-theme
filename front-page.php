@@ -1,23 +1,3 @@
-﻿<?php
-/**
- * Front Page Template - BuzzWire Daily
- * Template Name: BuzzWire Daily – Homepage
- * Description: Full-width responsive homepage
- *
- * @package Buzz_Theme
- * @since 2.0.0
- */
-
-if (!defined('ABSPATH')) { exit; }
-
-// Dequeue conflicting scripts/styles
-add_action('wp_enqueue_scripts', function() {
-    wp_dequeue_style('wp-admin');
-    wp_dequeue_style('dashicons');
-}, 100);
-
-get_header();
-?>
 <?php
 /**
  * Template Name: BuzzWire Daily – Homepage
@@ -2142,8 +2122,3 @@ document.querySelectorAll('.freq-b').forEach((b,i)=>{b.style.animationDuration=(
 </script>
 </body>
 </html>
-
-
-
-
-<?php get_footer(); ?>
